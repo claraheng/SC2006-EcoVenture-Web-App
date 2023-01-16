@@ -1,1 +1,3 @@
-# sc2006
+# README.md
+
+A place to store all my coding from NTU's SC2006 SOFTWARE ENGINEERING COURSE.

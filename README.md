@@ -1,8 +1,2 @@
 # About
-A place to store all my coding from NTU's SC2006 SOFTWARE ENGINEERING COURSE.
-
-## Lab 1
-This is a description about my first lab.
-
-## Local Development
-1. Open index.html in your browser.
+Group 5 Maggie's SC2006 Group Project Repository.

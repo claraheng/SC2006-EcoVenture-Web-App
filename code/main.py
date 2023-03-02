@@ -24,7 +24,7 @@ def login():
 
 
 @app.route("/checkin") #get current location and display on map 
-@login_required
+#@login_required
 def checkin():
     return render_template("checkin.html")
 

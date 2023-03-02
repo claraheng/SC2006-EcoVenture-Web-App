@@ -47,7 +47,7 @@ def user():
 def logout():
     session.pop('logged_in', None)
     session.pop('user_id', None)
-    return redirect('/login')
+    return render_template('home.html')
 
 # General error handler for all status codes
 @app.errorhandler(Exception)

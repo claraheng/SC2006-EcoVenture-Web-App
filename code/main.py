@@ -18,9 +18,9 @@ def unauthorized_callback():
 def load_user(user_id):
     return User.find_by_username(user_id)
 
-@app.route("/") #default page
-def login():
-    return render_template("login.html") 
+@app.route("/") #home page before login 
+def home():
+    return render_template("home.html")
 
 
 @app.route("/checkin") #get current location and display on map 
@@ -28,9 +28,6 @@ def login():
 def checkin():
     return render_template("checkin.html")
 
-@app.route("/home") #home page before login 
-def home():
-    return render_template("home.html")
 
 @app.route("/user") #userpage
 def user():

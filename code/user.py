@@ -2,10 +2,11 @@ from werkzeug.security import check_password_hash
 
 
 class User:
-    def __init__(self, id, username, password):
+    def __init__(self, id, username, password, totalPoints):
         self.id = id
         self.username = username
         self.password = password
+        self.points= totalPoints  
 
     def __repr__(self):
         return f'<User: {self.username}>'
@@ -17,9 +18,9 @@ class User:
             # with your own logic to retrieve a user from a database or some other storage
             # based on the given username.
             users = [
-                User(1, 'john', 'password'),
-                User(2, 'jane', 'password'),
-                User(3, 'bob', 'password'),
+                User(1, 'john', 'password',0),
+                User(2, 'jane', 'password',0),
+                User(3, 'bob', 'password',0),
             ]
             for user in users:
                 if user.username == username:
@@ -52,8 +53,8 @@ class User:
     @staticmethod
     def get_all():
         return [
-            User(1, 'john', 'password'),
-            User(2, 'jane', 'password'),
-            User(3, 'bob', 'password')
+            User(1, 'john', 'password',0),
+            User(2, 'jane', 'password',0),
+            User(3, 'bob', 'password',0)
         ]
         

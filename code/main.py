@@ -1,13 +1,16 @@
 from flask import Flask, render_template, request, redirect, session, url_for,flash 
 from flask_login import LoginManager, login_required, current_user
 from user import User
-from auth import auth, login_manager
+from auth import auth_bp, login_manager
 import os
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
-app.register_blueprint(auth)
+app.register_blueprint(auth_bp)
+#login_manager = LoginManager()
 login_manager.init_app(app)
+
+
 
 @login_manager.unauthorized_handler
 def unauthorized_callback():
@@ -23,17 +26,19 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/checkin") #get current location and display on map 
-#@login_required
+@app.route("/checkin")#get current location and display on map 
+@login_required
 def checkin():
+    print(session)
     return render_template("checkin.html")
+
 
 
 @app.route("/user") #userpage
 def user():
     # get the username from the session
     username = session.get('username')
-    print(session.get('username'))
+    print(session.get('username')) 
     # if the user is not logged in, redirect to the login page
     if not username:
         return redirect(url_for('login'))

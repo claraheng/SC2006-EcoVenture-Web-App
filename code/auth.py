@@ -1,16 +1,23 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash,session
+from flask import Flask,Blueprint, render_template, request, redirect, url_for, flash,session
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 from user import User
 
-auth = Blueprint('auth', __name__)
+
+auth_bp = Blueprint('auth', __name__)
 login_manager = LoginManager()
+login_manager.login_view = 'login'
 
 @login_manager.user_loader
-def load_user(user_id):
-    return User.get(user_id)
 
-@auth.route('/login', methods=['GET', 'POST'])
+#def load_user(user_id):
+#    return User.get(user_id)
+@login_manager.user_loader
+def load_user(user_id):
+        print(user_id)
+        return User(user_id)
+    
+@auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -27,8 +34,8 @@ def login():
     
     return render_template('login.html')
 
-@auth.route('/logout')
+@auth_bp.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('home'))

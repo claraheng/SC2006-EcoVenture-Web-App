@@ -1,7 +1,8 @@
 from werkzeug.security import check_password_hash
+from flask_login import UserMixin
 
 
-class User:
+class User(UserMixin):
     def __init__(self, id, username, password, totalPoints):
         self.id = id
         self.username = username
@@ -13,6 +14,7 @@ class User:
     
     def is_active(self):
         return True
+    
     def find_by_username(username):
             # This is just an example implementation, you will need to replace this
             # with your own logic to retrieve a user from a database or some other storage

@@ -15,18 +15,24 @@ class User(UserMixin):
     def is_active(self):
         return True
     
-    def find_by_username(username):
+    def find_by_username(user_id):
             # This is just an example implementation, you will need to replace this
             # with your own logic to retrieve a user from a database or some other storage
             # based on the given username.
-            users = [
-                User(1, 'john', 'password',0),
-                User(2, 'jane', 'password',0),
-                User(3, 'bob', 'password',0),
-            ]
+            #print("checking findbyusername=",username)
+
             for user in users:
-                if user.username == username:
+                if user.username == user_id:
+                    print("Pass user check")
                     return user
+            return None
+        
+    def findByID(user_id):
+        for user in users:
+            print("findbyID user=",user.id,"id=",user_id)
+            if user.id == user_id:
+                print("pass id check")
+                return user
             return None
         
     def check_password(self, password):
@@ -54,9 +60,10 @@ class User(UserMixin):
 
     @staticmethod
     def get_all():
-        return [
+        return users
+        
+users = [
             User(1, 'john', 'password',0),
             User(2, 'jane', 'password',0),
-            User(3, 'bob', 'password',0)
+            User(3, 'bob', 'password',0),
         ]
-        

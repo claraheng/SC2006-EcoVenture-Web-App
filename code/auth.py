@@ -26,7 +26,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.find_by_username(username)
-        print("login check user",user)
+        print("login check user ",user)
 
         if user and (password == user.password):
             session['username'] = user.username

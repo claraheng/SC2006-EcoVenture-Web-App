@@ -30,10 +30,10 @@ class User(UserMixin):
     def findByID(user_id):
         for user in users:
             print("findbyID user=",user.id,"id=",user_id)
-            if user.id == user_id:
+            if int(user.id) == int(user_id):
                 print("pass id check")
                 return user
-            return None
+        return None
         
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)

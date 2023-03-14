@@ -17,9 +17,10 @@ def unauthorized_callback():
     flash("You must be logged in to view that page.")
     return redirect(url_for('auth.login'))
 
-@login_manager.user_loader
+'''@login_manager.user_loader
 def load_user(user_id):
-    return User.find_by_username(user_id)
+    print(User.find_by_username(user_id))
+    return User.find_by_username(user_id)'''
 
 @app.route("/") #home page before login 
 def home():
@@ -38,7 +39,7 @@ def checkin():
 def user():
     # get the username from the session
     username = session.get('username')
-    print(session.get('username')) 
+    #print(session.get('username')) 
     # if the user is not logged in, redirect to the login page
     if not username:
         return redirect(url_for('login'))

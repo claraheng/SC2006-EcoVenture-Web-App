@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, url_for,flash 
 from flask_login import LoginManager, login_required, current_user
-from user import User
+from user import User, sqlite3
 from auth import auth_bp, login_manager
 import os
 
@@ -9,6 +9,10 @@ app.secret_key = 'your_secret_key'
 app.register_blueprint(auth_bp)
 #login_manager = LoginManager()
 login_manager.init_app(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///DB/users.db'
+db = sqlite3.connect('DB/users.db', check_same_thread=False)
+
+
 
 
 
@@ -17,10 +21,6 @@ def unauthorized_callback():
     flash("You must be logged in to view that page.")
     return redirect(url_for('auth.login'))
 
-'''@login_manager.user_loader
-def load_user(user_id):
-    print(User.find_by_username(user_id))
-    return User.find_by_username(user_id)'''
 
 @app.route("/") #home page before login 
 def home():

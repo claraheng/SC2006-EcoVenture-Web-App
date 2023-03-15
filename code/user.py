@@ -1,13 +1,14 @@
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
+import sqlite3 
 from flask_login import UserMixin
 
 
+
 class User(UserMixin):
-    def __init__(self, id, username, password, totalPoints):
-        self.id = id
+    def __init__(self,username, password, points):
         self.username = username
-        self.password = password
-        self.points= totalPoints  
+        self.password_hash = generate_password_hash(password)
+        self.points= points  
 
     def __repr__(self):
         return f'<User: {self.username}>'
@@ -15,29 +16,26 @@ class User(UserMixin):
     def is_active(self):
         return True
     
-    def find_by_username(user_id):
+    def check_password(self,password):
+        return check_password_hash(self.password_hash, password)
+    
+    
+    
+    def find_by_username(username):
             # This is just an example implementation, you will need to replace this
             # with your own logic to retrieve a user from a database or some other storage
             # based on the given username.
             #print("checking findbyusername=",username)
-
-            for user in users:
-                if user.username == user_id:
-                    print("Pass user check")
-                    return user
-            return None
+            connection = sqlite3.connect('DB/users.db')
+            cursor=connection.cursor()
+            cursor.execute('SELECT * FROM users WHERE username=?',(username,))
+            user_data=cursor.fetchone()
+            connection.close()
+            
+            if not user_data:
+                return None 
+            return User(user_data[0],user_data[1],user_data[2])
         
-    def findByID(user_id):
-        for user in users:
-            print("findbyID user=",user.id,"id=",user_id)
-            if int(user.id) == int(user_id):
-                print("pass id check")
-                return user
-        return None
-        
-    def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
-
     def is_authenticated(self):
         return True
 
@@ -48,22 +46,5 @@ class User(UserMixin):
         return False
 
     def get_id(self):
-        return str(self.id)
+        return str(self.username)
     
-    @staticmethod
-    def get(user_id):
-        users = User.get_all()
-        for user in users:
-            if user.id == user_id:
-                return user
-        return None
-
-    @staticmethod
-    def get_all():
-        return users
-        
-users = [
-            User(1, 'john', 'password',0),
-            User(2, 'jane', 'password',0),
-            User(3, 'bob', 'password',0),
-        ]

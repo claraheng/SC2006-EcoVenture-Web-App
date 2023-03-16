@@ -1,17 +1,20 @@
 from flask import Flask, render_template, request, redirect, session, url_for,flash 
 from flask_login import LoginManager, login_required, current_user
-from user import User, sqlite3
+from user import createAccount
 from auth import auth_bp, login_manager
+from models import db,User
+from flask_migrate import Migrate
 import os
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 app.register_blueprint(auth_bp)
-#login_manager = LoginManager()
 login_manager.init_app(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///DB/users.db'
-db = sqlite3.connect('DB/users.db', check_same_thread=False)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///Users/zhiyonglee/Documents/GitHub/sc2006lab/code/DB/users.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+#db = sqlite3.connect('DB/users.db', check_same_thread=False)
+db.init_app(app)
 
 
 
@@ -42,8 +45,32 @@ def user():
     #print(session.get('username')) 
     # if the user is not logged in, redirect to the login page
     if not username:
-        return redirect(url_for('login'))
+        return redirect(url_for('auth.login'))
     return render_template('user.html', username=username)
+
+@app.route('/createAccount', methods=['GET', 'POST'])
+def createAccountView():
+    if request.method == 'POST':
+        username = request.form['username']
+        password1 = request.form['password1']
+        password2 = request.form['password2']
+        points = 0
+        
+        if password1 != password2:
+            error = 'Passwords do not match'
+            return render_template('createAccount.html', error=error)
+
+        try:
+            createAccount(username, password1, points)
+            print("sign up successful")
+            return redirect(url_for('auth.login'))
+        except ValueError as e:
+            error = str(e)
+            return render_template('createAccount.html', error=error)
+
+    else:
+        error= None
+        return render_template('createAccount.html',error=error)
 
 
 @app.route('/logout')

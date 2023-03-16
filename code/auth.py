@@ -1,6 +1,7 @@
 from flask import Flask,Blueprint, render_template, request, redirect, url_for, flash,session
 from flask_login import LoginManager, login_user, logout_user, login_required
-from user import User, sqlite3
+from user import User,sqlite3, find_by_username
+from models import db
 
 
 
@@ -27,9 +28,9 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        user = User.find_by_username(username)
+        user = find_by_username(username)
+        if user and user.check_password(password):
 
-        if user and (User.check_password(user,password)):
             session['username'] = user.username
             login_user(user)
             return redirect(url_for('user', username=user.username))

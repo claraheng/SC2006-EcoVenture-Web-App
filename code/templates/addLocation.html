@@ -8,7 +8,7 @@
         width: 100%;
       }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiGsmX06pkCBB0-AGc0f76kXr0SuoraKQ"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script> <!--insert your google API key here-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
       function initMap() {
@@ -26,8 +26,8 @@
 
           var lat = event.latLng.lat();
           var lng = event.latLng.lng();
-          console.log("Clicked lat: " + lat);
-          console.log("Clicked lng: " + lng);
+          //console.log("Clicked lat: " + lat);
+          //console.log("Clicked lng: " + lng);
           var contentString =
             "<b>Clicked Location</b><br/>" + "Latitude: " + lat + "<br/>Longitude: " + lng;
           var infowindow = new google.maps.InfoWindow({
@@ -52,8 +52,8 @@
           //need to document.on because button is dynamically created omg I literally kms figuring this out
           var name = $('#nameInput').val();
           var points = $('#pointsInput').val();
-          console.log("Inputted name: " + name);
-          console.log("Inputted points: " + points);
+          //console.log("Inputted name: " + name);
+          //console.log("Inputted points: " + points);
             // Call API endpoint with coordinates and name
             $.ajax({
               type: "POST",
@@ -62,6 +62,7 @@
               contentType: "application/json; charset=utf-8",
               dataType: "json",
             });
+          infowindow.close(); //close window after done
           });
       });
       }

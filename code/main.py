@@ -4,7 +4,7 @@ from user import createAccount
 from auth import auth_bp, login_manager
 from models import db,User
 from flask_migrate import Migrate
-import os, sqlite3, weather, databasetest
+import os, sqlite3, weather
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'

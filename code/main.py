@@ -32,7 +32,16 @@ def checkin():
     print(session)
     return render_template("checkin.html")
 
-
+@app.route("/whereshouldigo")
+@login_required
+def whereshouldigo():
+    items = [
+        {'category': 'Nature Reserves', 'image': 'image1', 'description': 'protected areas of importance for flora, fauna, or features of geological or other special interest'},
+        {'category': 'Parks', 'image': 'image2', 'description': 'areas of natural, semi-natural or planted space for  enjoyment and recreation'},
+        {'category': 'Wildlife Reserves', 'image': 'image3', 'description': 'large areas of land where wild animals live safely' }
+    ]
+    print(session)
+    return render_template("whereshouldigo.html", items=items)
 
 @app.route("/user") #userpage
 def user():

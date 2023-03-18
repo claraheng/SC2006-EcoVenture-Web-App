@@ -4,7 +4,7 @@ from user import createAccount
 from auth import auth_bp, login_manager
 from models import db,User
 from flask_migrate import Migrate
-import os
+import os, sqlite3, weather, databasetest
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -72,6 +72,25 @@ def createAccountView():
         error= None
         return render_template('createAccount.html',error=error)
 
+@app.route('/addLocation') #clicking on map to create location
+def addLocation():
+    #admin login required, idk how todo this lol
+    return render_template('addLocation.html')
+
+@app.route('/handle_click', methods=['POST']) #for getting location input only, don't open this
+def handle_click():
+    data = request.get_json() #need to change all this later, temporary I use for testing earlier
+    lat = data['lat']
+    lng = data['lng']
+    name = data['name']
+    points = data['points']
+    conn = sqlite3.connect("mydatabase.db") #need to change all this later, temporary I use for testing earlier
+    c = conn.cursor()
+    c.execute("INSERT INTO fitlocations (lat, lng, name, points) VALUES (?, ?, ?, ?)", (lat, lng, name, points)) #need to change later
+    conn.commit()
+    conn.close()
+    # Store this into db
+    return 'Success'
 
 @app.route('/logout')
 def logout():

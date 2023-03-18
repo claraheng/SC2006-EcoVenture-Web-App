@@ -72,6 +72,13 @@ def createAccountView():
         error= None
         return render_template('createAccount.html',error=error)
 
+@app.route('/directions') #get directions to destination from current location
+def getDirections():
+    #user login required, idk how todo this lol
+    travel={'destination': 'Changi Airport', 'mode': 'TRANSIT'} 
+    #placeholder, should be selected location and mode of transport instead
+    return render_template('directions.html', travel=travel)
+
 @app.route('/addLocation') #clicking on map to create location
 def addLocation():
     #admin login required, idk how todo this lol

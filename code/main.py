@@ -36,7 +36,43 @@ def checkin():
     print(session)
     return render_template("checkin.html")
 
+@app.route("/whereshouldigo")
+#@login_required
+def whereshouldigo():
+    items = [
+        {'category': 'Nature Reserves', 'image': 'image1', 'description': 'protected areas of importance for flora, fauna, or features of geological or other special interest'},
+        {'category': 'Parks', 'image': 'image2', 'description': 'areas of natural, semi-natural or planted space for  enjoyment and recreation'},
+        {'category': 'Wildlife Reserves', 'image': 'image3', 'description': 'large areas of land where wild animals live safely' }
+    ]
+#    print(session)
+    return render_template("whereshouldigo.html", items=items)
 
+@app.route('/route1', methods=['POST'])
+#@login_required
+def route1():
+    # Handle form submission from button 1
+    data = request.form['input_data']
+    return redirect(url_for('naturereserves'))
+
+@app.route('/route2', methods=['POST'])
+#@login_required
+def route2():
+    # Handle form submission from button 2
+    data = request.form['input_data']
+    return redirect(url_for('parks'))
+
+@app.route('/route3', methods=['POST'])
+#@login_required
+def route3():
+    # Handle form submission from button 3
+    data = request.form['input_data']
+    return redirect(url_for('wildlifereserves'))
+
+@app.route('/naturereserves')
+#@login_required
+def naturereserves():
+    
+    return render_template("naturereserves.html", items=items)
 
 @app.route("/user") #userpage
 def user():

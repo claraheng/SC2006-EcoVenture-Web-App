@@ -1,9 +1,7 @@
-#classfile for fitness areas
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-app = Flask(__name__)
+from models import db, app
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///areas.db'
-db = SQLAlchemy(app)
+db.init_app(app)
 
 class Area(db.Model):
     id = db.Column(db.Integer(), primary_key=True)

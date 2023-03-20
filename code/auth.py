@@ -1,7 +1,7 @@
 from flask import Flask,Blueprint, render_template, request, redirect, url_for, flash,session
 from flask_login import LoginManager, login_user, logout_user, login_required
-from user import User,sqlite3, find_by_username
-from models import db
+from user import User, find_by_username
+import sqlite3
 
 
 

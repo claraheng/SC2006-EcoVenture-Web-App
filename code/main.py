@@ -1,22 +1,16 @@
-from flask import Flask, render_template, request, redirect, session, url_for,flash 
-from flask_login import LoginManager, login_required, current_user
+from flask import render_template, request, redirect, session, url_for,flash 
+from flask_login import login_required
 from user import createAccount
 from auth import auth_bp, login_manager
-from models import db,User
-from flask_migrate import Migrate
-import os, sqlite3, weather
+import sqlite3
+from models import app
 
-app = Flask(__name__)
+
 app.secret_key = 'your_secret_key'
 app.register_blueprint(auth_bp)
 login_manager.init_app(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///Users/zhiyonglee/Documents/GitHub/sc2006lab/code/DB/users.db'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-#db = sqlite3.connect('DB/users.db', check_same_thread=False)
-db.init_app(app)
-
-
 
 
 @login_manager.unauthorized_handler

@@ -8,16 +8,16 @@ db = SQLAlchemy(app)
 class Area(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(length=30), nullable=False, unique=True)
-    latitude = db.Column(db.Integer(), nullable=False)
-    longtitude = db.Column(db.Integer(), nullable=False)
+    latitude = db.Column(db.Float(), nullable=False)
+    longitude = db.Column(db.Float(), nullable=False)
     points = db.Column(db.Integer(), nullable=False)
     category = db.Column(db.String(length=30), nullable=False)
     description = db.Column(db.String(length=1024), nullable=False)
 
-    def __init__(self, name: str, latitude: int, longtitude: int, points: int, category: str, description: str):
+    def __init__(self, name: str, latitude: float, longitude: float, points: int, category: str, description: str):
         self.name = name
         self.latitude = latitude
-        self.longtitude = longtitude
+        self.longitude = longitude
         self.points = points
         self.category = category
         self.description = description

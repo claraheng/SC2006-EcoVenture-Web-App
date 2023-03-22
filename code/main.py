@@ -1,23 +1,23 @@
-from flask import Flask, render_template, request, redirect, session, url_for,flash 
-from flask_login import LoginManager, login_required, current_user
-from user import User
+from flask import render_template, request, redirect, session, url_for,flash 
+from flask_login import login_required
+from user import createAccount
 from auth import auth_bp, login_manager
-import os
+import sqlite3
+from models import app
 
-app = Flask(__name__)
+
 app.secret_key = 'your_secret_key'
 app.register_blueprint(auth_bp)
-#login_manager = LoginManager()
 login_manager.init_app(app)
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 
 @login_manager.unauthorized_handler
 def unauthorized_callback():
     flash("You must be logged in to view that page.")
     return redirect(url_for('auth.login'))
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.find_by_username(user_id)
 
 @app.route("/") #home page before login 
 def home():
@@ -33,11 +33,62 @@ def checkin():
 def user():
     # get the username from the session
     username = session.get('username')
-    print(session.get('username')) 
+    #print(session.get('username')) 
     # if the user is not logged in, redirect to the login page
     if not username:
-        return redirect(url_for('login'))
+        return redirect(url_for('auth.login'))
     return render_template('user.html', username=username)
+
+@app.route('/createAccount', methods=['GET', 'POST'])
+def createAccountView():
+    if request.method == 'POST':
+        username = request.form['username']
+        password1 = request.form['password1']
+        password2 = request.form['password2']
+        points = 0
+        
+        if password1 != password2:
+            error = 'Passwords do not match'
+            return render_template('createAccount.html', error=error)
+
+        try:
+            createAccount(username, password1, points)
+            print("sign up successful")
+            return redirect(url_for('auth.login'))
+        except ValueError as e:
+            error = str(e)
+            return render_template('createAccount.html', error=error)
+
+    else:
+        error= None
+        return render_template('createAccount.html',error=error)
+
+@app.route('/directions') #get directions to destination from current location
+def getDirections():
+    #user login required, idk how todo this lol
+    travel={'destination': 'Changi Airport', 'mode': 'TRANSIT'} 
+    #placeholder, should be selected location and mode of transport instead
+    return render_template('directions.html', travel=travel)
+
+@app.route('/addLocation') #clicking on map to create location
+def addLocation():
+    #admin login required, idk how todo this lol
+    return render_template('addLocation.html')
+
+@app.route('/handle_click', methods=['POST']) #for getting location input only, don't open this
+def handle_click():
+    data = request.get_json() #need to change all this later, temporary I use for testing earlier
+    lat = data['lat']
+    lng = data['lng']
+    name = data['name']
+    points = data['points']
+    conn = sqlite3.connect("mydatabase.db") #need to change all this later, temporary I use for testing earlier
+    c = conn.cursor()
+    c.execute("INSERT INTO fitlocations (lat, lng, name, points) VALUES (?, ?, ?, ?)", (lat, lng, name, points)) #need to change later
+    conn.commit()
+    conn.close()
+    # Store this into db
+    return 'Success'
 
 @app.route('/logout')
 def logout():
@@ -50,9 +101,8 @@ def logout():
 def handle_error(e):
     return render_template('error.html', error=str(e)), getattr(e, 'code', 500)
 
-if __name__ == "__main__":
-   port = int(os.environ.get("PORT", 5000))
-   app.run(host="0.0.0.0", port=port)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
 
 
 app.run()

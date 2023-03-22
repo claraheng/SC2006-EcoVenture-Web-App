@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Fitness Location</title>
+    <style>
+      #map {
+        height: 800px;
+        width: 100%;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiGsmX06pkCBB0-AGc0f76kXr0SuoraKQ"></script> <!--insert your google API key here-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 1.290270, lng: 103.851959 },
+          zoom: 14,
+        });
+
+        //listener for click and store the lat lng
+        google.maps.event.addListener(map, "click", function (event) {
+          var marker = new google.maps.Marker({
+            position: event.latLng,
+            map: map,
+          });
+
+          var lat = event.latLng.lat();
+          var lng = event.latLng.lng();
+          //console.log("Clicked lat: " + lat);
+          //console.log("Clicked lng: " + lng);
+          var contentString =
+            "<b>Clicked Location</b><br/>" + "Latitude: " + lat + "<br/>Longitude: " + lng;
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString,
+          });
+          infowindow.open(map, marker);
+          
+          // Show form for user input
+          var form =
+            '<form id="nameForm">' +
+            '<label for="nameInput">Fitness location name: </label>' +
+            '<input type="text" id="nameInput" name="nameInput">' +
+            '<br/>' +
+            '<label for="pointsInput">Points: </label>' +
+            '<input type="number" id="pointsInput" name="pointsInput">' +
+            '<br/>' +
+            '<input type="button" id="submitButton" value="Submit">' +
+            '</form>';
+          infowindow.setContent(contentString + form);
+
+          $(document).on('click', '#submitButton', function() { 
+          //need to document.on because button is dynamically created omg I literally kms figuring this out
+          var name = $('#nameInput').val();
+          var points = $('#pointsInput').val();
+          //console.log("Inputted name: " + name);
+          //console.log("Inputted points: " + points);
+            // Call API endpoint with coordinates and name
+            $.ajax({
+              type: "POST",
+              url: "/handle_click",
+              data: JSON.stringify({lat: lat, lng: lng, name: name, points: points}),
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+            });
+          infowindow.close(); //close window after done
+          });
+      });
+      }
+    </script>
+  </head>
+  <body onload="initMap()">
+    <div id="map">
+    </div>
+  </body>
+</html>

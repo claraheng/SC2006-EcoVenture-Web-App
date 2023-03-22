@@ -2,16 +2,20 @@ from flask import render_template, request, redirect, session, url_for,flash
 from flask_login import login_required
 from user import createAccount
 from auth import auth_bp, login_manager
+from checkin import checkin_bp
 import sqlite3
-from models import app
+from models import app, db
 
 
 app.secret_key = 'your_secret_key'
 app.register_blueprint(auth_bp)
+app.register_blueprint(checkin_bp)
 login_manager.init_app(app)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ECHO'] = True
 
+#db.init_app(app)
 
 @login_manager.unauthorized_handler
 def unauthorized_callback():
@@ -24,11 +28,11 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/checkin")#get current location and display on map 
+'''@app.route("/checkin")#get current location and display on map 
 @login_required
 def checkin():
     print(session)
-    return render_template("checkin.html")
+    return render_template("checkin.html")'''
 
 @app.route("/whereshouldigo")
 #@login_required

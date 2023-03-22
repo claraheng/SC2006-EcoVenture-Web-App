@@ -1,8 +1,8 @@
 #class file for fitnessarea 
 from flask import Flask, g, request, jsonify
 import sqlite3
+from models import app 
 
-app = Flask(__name__)
 
 def connect_db():
     sql = sqlite3.connect('./database.db')

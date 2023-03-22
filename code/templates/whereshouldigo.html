@@ -57,19 +57,41 @@
         </thead>
         <tbody>
             <!-- Your rows inside the table HERE: -->
-            {% for item in items %}
-            <form method="POST">
-                <input type="hidden" name="item_id" value="{{item.id}}">
+            <form method="POST" action="/route1">
+                <input type="hidden" name="item_id" value="{{items[0].id}}">
                 <tr>
-                    <td>{{ item.category }}</td>
-                    <td>{{ item.image }}</td>
-                    <td>{{ item.description }}</td>
+                    <td>{{ items[0].category }}</td>
+                    <td>{{ items[0].image }}</td>
+                    <td>{{ items[0].description }}</td>
                     <td>    
-                        <button type="submit" name="submit_button" value="{{item.id}}_1">Choose</button>
+                        <button type="submit" name="submit_button" value="button1">Choose</button>
                     </td>
                 </tr>
             </form>
-            {% endfor %}
+            
+            <form method="POST" action="/route1">
+                <input type="hidden" name="item_id" value="{{items[1].id}}">
+                <tr>
+                    <td>{{ items[1].category }}</td>
+                    <td>{{ items[1].image }}</td>
+                    <td>{{ items[1].description }}</td>
+                    <td>    
+                        <button type="submit" name="submit_button" value="button2">Choose</button>
+                    </td>
+                </tr>
+            </form>
+            
+            <form method="POST" action="/route1">
+                <input type="hidden" name="item_id" value="{{items[2].id}}">
+                <tr>
+                    <td>{{ items[2].category }}</td>
+                    <td>{{ items[2].image }}</td>
+                    <td>{{ items[2].description }}</td>
+                    <td>    
+                        <button type="submit" name="submit_button" value="button3">Choose</button>
+                    </td>
+                </tr>
+            </form>
         </tbody>
     </table>
 </html>

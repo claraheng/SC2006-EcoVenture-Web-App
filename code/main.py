@@ -2,17 +2,25 @@ from flask import render_template, request, redirect, session, url_for,flash
 from flask_login import login_required
 from user import createAccount
 from auth import auth_bp, login_manager
+from checkin import checkin_bp
 import sqlite3
-from models import app
+from models import app, db
 
 
 app.secret_key = 'your_secret_key'
 app.register_blueprint(auth_bp)
+app.register_blueprint(checkin_bp)
 login_manager.init_app(app)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ECHO'] = True
 
-
+#db.init_app(app)
+items = [
+        {'category': 'Nature Reserves', 'image': 'image1', 'description': 'protected areas of importance for flora, fauna, or features of geological or other special interest'},
+        {'category': 'Parks', 'image': 'image2', 'description': 'areas of natural, semi-natural or planted space for  enjoyment and recreation'},
+        {'category': 'Wildlife Reserves', 'image': 'image3', 'description': 'large areas of land where wild animals live safely' }
+    ]
 @login_manager.unauthorized_handler
 def unauthorized_callback():
     flash("You must be logged in to view that page.")
@@ -22,12 +30,6 @@ def unauthorized_callback():
 @app.route("/") #home page before login 
 def home():
     return render_template("home.html")
-
-@app.route("/checkin")#get current location and display on map 
-@login_required
-def checkin():
-    print(session)
-    return render_template("checkin.html")
 
 @app.route("/user") #userpage
 def user():

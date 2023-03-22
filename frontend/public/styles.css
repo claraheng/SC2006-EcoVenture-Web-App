@@ -1,0 +1,92 @@
+/* --GENERAL STYLES-- */
+
+h1{
+    font-family: 'Itim', cursive;
+    color: white;
+    font-size: 2rem;
+}
+
+h2{
+    font-family: 'Itim', cursive;
+    color: white;
+    font-size: 1.5rem;
+}
+
+body{
+    font-family:'Rubik', sans-serif;
+    background-color: #EDF1D6;
+    color: white;
+}
+
+.brand{
+    font-family: 'Pacifico', sans-serif;
+    color: #EDF1D6;
+}
+
+.btn-big{
+    -webkit-border-radius: 11;
+    -moz-border-radius: 11;
+    border-radius: 11px;
+    color: #EDF1D6;
+    font-size: 2rem;
+    background: #609966;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+  
+.btn-big:hover {
+    background: #40513B;
+    text-decoration: none;
+}
+
+/*Sections Styling*/
+.colored-section{
+    background-color: #9DC08B;
+}
+
+/* Navigation Bar */
+.navbar{
+    padding-bottom: 4.5rem;
+}
+
+.navbar-brand{
+    font-family: 'Pacifico', sans-serif;
+    font-size: 2.5rem;
+}
+
+.nav-item{
+    padding: 0 18px;
+}
+
+.nav-link{
+    font-size: 1.2rem;
+}
+
+.nav-link:hover{
+    color:white;
+}
+
+/*Title Section*/
+.title-section{
+    background-image: url("../src/images/leaves-bg.jpg"); /*idk why this dont work but ohwells*/
+    padding:3% 3% 5%;
+}
+
+.title{
+    text-align: center;
+    font-family: 'Itim',cursive;
+    font-size: 5.5rem;
+}
+
+/*Menu Section*/
+.menu-item{
+    text-align: center;
+    padding: 5%;
+}
+
+.menu-heading{
+    font-family: 'Rubik', sans-serif;
+    font-size: 3rem;
+    color: #609966;
+}
+ 

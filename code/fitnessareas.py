@@ -1,7 +1,5 @@
 from models import db, app
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///Users/zhiyonglee/Documents/GitHub/sc2006lab/code/DB/areas.db'
-#db.init_app(app)
 
 class Area(db.Model):
     __bind_key__="fitnessareas"

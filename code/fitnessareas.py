@@ -1,9 +1,9 @@
 from models import db, app
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///areas.db'
-db.init_app(app)
 
 class Area(db.Model):
+    __bind_key__="fitnessareas"
+    __tablename__='areas'
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(length=30), nullable=False, unique=True)
     latitude = db.Column(db.Integer(), nullable=False)

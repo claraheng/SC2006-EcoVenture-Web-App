@@ -40,8 +40,6 @@ def login():
         else:
             return jsonify({'message': 'Invalid username or password'}), 401
     
-    return jsonify({'message': 'Welcome!'})
-
 @auth_bp.route('/logout')
 @login_required
 def logout():

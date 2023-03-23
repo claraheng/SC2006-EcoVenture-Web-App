@@ -5,6 +5,12 @@ from auth import auth_bp, login_manager
 from checkin import checkin_bp
 import sqlite3
 from models import app, db
+from flask_cors import CORS # frontend
+from flask import jsonify # frontend
+
+# frontend
+app = Flask(__name__)
+CORS(app)
 
 
 app.secret_key = 'your_secret_key'
@@ -51,15 +57,15 @@ def createAccountView():
         
         if password1 != password2:
             error = 'Passwords do not match'
-            return render_template('createAccount.html', error=error)
+            return jsonify({'message': 'Passwords do not match'}), 401
 
         try:
             createAccount(username, password1, points)
             print("sign up successful")
-            return redirect(url_for('auth.login'))
+            return {'message': 'success'}
         except ValueError as e:
             error = str(e)
-            return render_template('createAccount.html', error=error)
+            return jsonify({'message': 'Error!'}), 401
 
     else:
         error= None

@@ -9,12 +9,18 @@ function LoginForm() {
     event.preventDefault();
     axios.post('http://localhost:5000/login', { username, password })
       .then(response => {
-        console.log(response.data.message); // or redirect the user to a new page
+        if (response.data.message === 'Welcome!') {
+          window.location.href = '/HomePage';
+        }
+        if (response.data.message === 'Logged in successfully') {
+          window.location.href = '/HomePage';
+        }
       })
       .catch(error => {
         console.log(error);
       });
   };
+
 
   return (
     <div className='container'>

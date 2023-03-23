@@ -1,9 +1,10 @@
 import React from "react"
 
-function TitleSection(){
+function TitleSection(props){
     return(
         <div className="title-section">
-            <h1 className="title">Welcome Back to EcoVenture.</h1>
+            <h1 className="title">{props.title}</h1>
+            <h3 className="description">{props.description}</h3>
         </div>
     )
 }

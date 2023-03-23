@@ -1,5 +1,5 @@
 import React from "react";
-import MenuSection from "./MenuSection";
+import MenuSection from "./HomePageMenuSection";
 import NavBar from "./NavBar";
 import TitleSection from "./TitleSection";
 
@@ -9,7 +9,7 @@ function HomePage(){
         <section>
         <div className="colored-section container-fluid">
         <NavBar/>
-        <TitleSection/>
+        <TitleSection title="Welcome to EcoVenture." description="Embark on your next adventure at one of our Fitness Areas."/>
         
         </div>
         

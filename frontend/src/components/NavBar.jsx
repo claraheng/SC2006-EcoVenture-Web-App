@@ -12,6 +12,9 @@ function NavBar(){
             <li className="nav-item">
               <a className="nav-link" href="">Log Out</a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="">Log In</a>
+            </li>
           </ul> 
           </nav>
     

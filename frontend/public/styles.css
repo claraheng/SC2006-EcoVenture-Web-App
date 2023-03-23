@@ -1,4 +1,4 @@
-/* --GENERAL STYLES-- */
+/* -----------GENERAL STYLES----------- */
 
 h1{
     font-family: 'Itim', cursive;
@@ -11,18 +11,33 @@ h2{
     color: white;
     font-size: 1.5rem;
 }
+h3{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    color: white;
+    font-size: 1.5rem;
+}
 
 body{
     font-family:'Rubik', sans-serif;
+    font-weight: 300;
     background-color: #EDF1D6;
     color: white;
 }
+/*-----------GENERAL SECTION STYLING-----------*/
+.colored-section{
+    background-color: #9DC08B;
+}
 
+/*-----------GENERAL COMPONENTS-----------*/
+
+/* EcoVenture Brand */
 .brand{
     font-family: 'Pacifico', sans-serif;
     color: #EDF1D6;
 }
 
+/* Buttons */
 .btn-big{
     -webkit-border-radius: 11;
     -moz-border-radius: 11;
@@ -39,9 +54,41 @@ body{
     text-decoration: none;
 }
 
-/*Sections Styling*/
-.colored-section{
-    background-color: #9DC08B;
+/*Search Bar*/
+.search-bar{
+border-width: 3px;
+border-color: #609966;
+border-style: solid;
+  background-color: rgba(237, 241, 214,1);
+  width: 70%;
+  outline: 0px;
+  outline-color: transparent;
+  border-radius: 19px;
+  padding: 10px 15px;
+  margin: 0 auto 10px auto;
+  display: block;
+  margin: 20px auto;
+}
+
+.search-icon{
+    color: #609966;
+}
+.search-input{
+    color: #609966;
+    border: none;
+    outline: 0px;
+    text-align: left;
+  font-family: 'Rubik',cursive;
+  font-size: 20px;
+  font-weight: 300;
+  height: 100%;
+  width: 92%;
+  background-color: transparent;
+}
+
+.search-input::placeholder{
+    color: #609966;
+    opacity: 0.4;
 }
 
 /* Navigation Bar */
@@ -52,10 +99,12 @@ body{
 .navbar-brand{
     font-family: 'Pacifico', sans-serif;
     font-size: 2.5rem;
+    margin-left: 1.5rem;
 }
 
 .nav-item{
     padding: 0 18px;
+    font-weight: 400;
 }
 
 .nav-link{
@@ -66,6 +115,7 @@ body{
     color:white;
 }
 
+/*--BERNS PAGES IDK WHAT TO NAME THIS YET LOL-----*/
 /*Title Section*/
 .title-section{
     background-image: url("../src/images/leaves-bg.jpg"); /*idk why this dont work but ohwells*/
@@ -78,10 +128,14 @@ body{
     font-size: 5.5rem;
 }
 
+.description{
+    text-align: center;
+}
+
 /*Menu Section*/
 .menu-item{
     text-align: center;
-    padding: 5%;
+    padding: 7rem;
 }
 
 .menu-heading{
@@ -90,3 +144,22 @@ body{
     color: #609966;
 }
  
+/*WSIG Menu Section*/
+#wsig-menu-section{
+    padding: 10px 15px;
+}
+
+.card-column{
+    padding: 1rem 1rem;
+}
+
+.card{
+    padding: 5px;
+    background-color:#EDF1D6;
+}
+
+.card-title{
+    font-family: 'Itim', cursive;
+    color:#40513B;
+    text-align: center;
+}

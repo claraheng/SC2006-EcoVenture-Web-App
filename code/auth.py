@@ -2,8 +2,12 @@ from flask import Flask,Blueprint, render_template, request, redirect, url_for, 
 from flask_login import LoginManager, login_user, logout_user, login_required
 from user import User, find_by_username
 import sqlite3
+from flask_cors import CORS # frontend
+from flask import jsonify # frontend
 
-
+# frontend
+app = Flask(__name__)
+CORS(app)
 
 auth_bp = Blueprint('auth', __name__)
 login_manager = LoginManager()
@@ -30,16 +34,12 @@ def login():
         password = request.form['password']
         user = find_by_username(username)
         if user and user.check_password(password):
-
             session['username'] = user.username
             login_user(user)
-            return redirect(url_for('user', username=user.username))
+            return jsonify({'message':'Logged in successfully'})
         else:
-            error = 'Invalid username or password. Please try again.'
-            return render_template('login.html', error=error)
+            return jsonify({'message': 'Invalid username or password'}), 401
     
-    return render_template('login.html')
-
 @auth_bp.route('/logout')
 @login_required
 def logout():

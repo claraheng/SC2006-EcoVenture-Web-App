@@ -16,6 +16,7 @@ function HomePage(){
         <div>
         <MenuSection/>
         </div>
+
         </section>
         )
     }

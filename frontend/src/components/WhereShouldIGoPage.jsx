@@ -13,10 +13,10 @@ function WhereShouldIGo(){
             <NavBar/>
             <TitleSection title="Where Should I Go?" description="Choose a location category."/>
         </div>
-
         <SearchBar placeholder="Search for Fitness Areas..."/>
-            <MenuSection/>
 
+            <MenuSection/>
+                
             
         </div>
     )

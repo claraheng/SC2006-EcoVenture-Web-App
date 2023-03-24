@@ -1,13 +1,23 @@
 import React from "react";
-import NavBar from "./NavBar";
+import ReactDOM from "react-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import WhereShouldIGo from "./WhereShouldIGoPage";
+import CheckIn from "./CheckIn";
 
 
 function App() {
   return (
     <div>
-    <HomePage/>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />}/>
+        <Route path="/homepage" element={<HomePage />}/>
+          <Route path="/whereshouldigo" element={<WhereShouldIGo />} />
+          <Route path="/checkin" element={<CheckIn />} />
+          {/* <Route path="*" element={error page} /> */}
+  
+      </Routes></BrowserRouter>
     </div>
   );
 }

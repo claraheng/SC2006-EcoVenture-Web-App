@@ -31,7 +31,6 @@ function CreateAccountForm() {
   return (
     <div className='container'>
         <h1>Create Account</h1>
-        <h2>Hello {username}</h2>
 
       <form onSubmit={handleSubmit}>
         <label>
@@ -48,6 +47,7 @@ function CreateAccountForm() {
             <input type="password" value={password2} onChange={e => setPassword2(e.target.value)}
             placeholder="Verify Password" />
         </label>
+        <br />
         <button type="submit">Create Account</button>
       </form>
     </div>

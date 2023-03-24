@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, session, url_for,flash 
+from flask import render_template, request, redirect, session, url_for,flash, Flask 
 from flask_login import login_required
 from user import createAccount
 from auth import auth_bp, login_manager

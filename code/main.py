@@ -5,12 +5,12 @@ from auth import auth_bp, login_manager
 from checkin import checkin_bp
 import sqlite3
 from models import app, db
-from flask_cors import CORS # frontend
+#from flask_cors import CORS # frontend
 from flask import jsonify # frontend
 
 # frontend
-app = Flask(__name__)
-CORS(app)
+#app = Flask(__name__)
+#CORS(app)
 
 
 app.secret_key = 'your_secret_key'
@@ -21,7 +21,6 @@ login_manager.init_app(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 
-#db.init_app(app)
 items = [
         {'category': 'Nature Reserves', 'image': 'image1', 'description': 'protected areas of importance for flora, fauna, or features of geological or other special interest'},
         {'category': 'Parks', 'image': 'image2', 'description': 'areas of natural, semi-natural or planted space for  enjoyment and recreation'},

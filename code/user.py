@@ -3,6 +3,7 @@ from werkzeug.security import check_password_hash
 from models import db
 
 
+
 class User(db.Model):
     __bind_key__="users"
     __tablename__='users'

@@ -9,7 +9,6 @@ from flask_cors import CORS # frontend
 from flask import jsonify # frontend
 
 # frontend
-app = Flask(__name__)
 CORS(app)
 
 

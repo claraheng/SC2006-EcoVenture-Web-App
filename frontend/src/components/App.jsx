@@ -18,6 +18,7 @@ function App() {
         <Route path="/homepage" element={<HomePage />}/>
           <Route path="/whereshouldigo" element={<WhereShouldIGo />} />
           <Route path="/checkin" element={<CheckIn />} />
+          <Route path="/login" element={<LoginForm />} />
           {/* <Route path="*" element={error page} /> */}
   
       </Routes></BrowserRouter>

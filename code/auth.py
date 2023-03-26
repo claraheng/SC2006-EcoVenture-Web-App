@@ -4,9 +4,10 @@ from user import User, find_by_username
 import sqlite3
 from flask_cors import CORS # frontend
 from flask import jsonify # frontend
+from models import app
+from models import db
 
 # frontend
-app = Flask(__name__)
 CORS(app)
 
 auth_bp = Blueprint('auth', __name__)
@@ -36,10 +37,13 @@ def login():
         if user and user.check_password(password):
             session['username'] = user.username
             login_user(user)
-            return jsonify({'message':'Logged in successfully'})
+            return redirect(url_for('user', username=user.username))
+            # return jsonify({'message':'Logged in successfully'})
         else:
-            return jsonify({'message': 'Invalid username or password'}), 401
-    
+            error = 'Invalid username or password. Please try again.'
+            return render_template('login.html', error=error)
+            # return jsonify({'message': 'Invalid username or password'}), 401
+    return render_template('login.html')
 @auth_bp.route('/logout')
 @login_required
 def logout():

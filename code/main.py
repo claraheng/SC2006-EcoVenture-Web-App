@@ -5,12 +5,12 @@ from auth import auth_bp, login_manager
 from checkin import checkin_bp
 import sqlite3
 from models import app, db
-from flask_cors import CORS # frontend
+#from flask_cors import CORS # frontend
 from flask import jsonify # frontend
 
 # frontend
-app = Flask(__name__)
-CORS(app)
+#app = Flask(__name__)
+#CORS(app)
 
 
 app.secret_key = 'your_secret_key'

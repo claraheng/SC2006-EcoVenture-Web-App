@@ -84,18 +84,21 @@ def addLocation():
 
 @app.route('/handle_click', methods=['POST']) #for getting location input only, don't open this
 def handle_click():
-    data = request.get_json() #need to change all this later, temporary I use for testing earlier
-    lat = data['lat']
-    lng = data['lng']
+    data = request.get_json()
     name = data['name']
+    latitude = data['latitude']
+    longitude = data['longitude']
     points = data['points']
-    conn = sqlite3.connect("mydatabase.db") #need to change all this later, temporary I use for testing earlier
+    category = data['category']
+    description = data['description']
+    conn=sqlite3.connect('C:/Users/Bakase/Documents/GitHub/test2/code/DB/areas.db') #change to appropriate db path
     c = conn.cursor()
-    c.execute("INSERT INTO fitlocations (lat, lng, name, points) VALUES (?, ?, ?, ?)", (lat, lng, name, points)) #need to change later
+    c.execute('INSERT INTO areas (name, latitude, longitude, points, category, description) VALUES (?, ?, ?, ?, ?, ?)', (name, latitude, longitude, points, category, description))
     conn.commit()
     conn.close()
-    # Store this into db
-    return 'Success'
+    print('Success')  # print a success message
+    message = 'Successfully added location: ' + name
+    return jsonify({'result': 'Success', 'message': message})
 
 @app.route('/logout')
 def logout():

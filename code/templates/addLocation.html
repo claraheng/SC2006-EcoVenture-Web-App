@@ -7,6 +7,10 @@
         height: 800px;
         width: 100%;
       }
+      #descriptionInput {
+        height: 80px;
+        width: 98%;
+      }
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiGsmX06pkCBB0-AGc0f76kXr0SuoraKQ"></script> <!--insert your google API key here-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -23,7 +27,7 @@
             position: event.latLng,
             map: map,
           });
-
+        
           var lat = event.latLng.lat();
           var lng = event.latLng.lng();
           //console.log("Clicked lat: " + lat);
@@ -44,6 +48,16 @@
             '<label for="pointsInput">Points: </label>' +
             '<input type="number" id="pointsInput" name="pointsInput">' +
             '<br/>' +
+            '<label for="categoryInput">Category: </label>' +
+            '<select id="categoryInput" name="categoryInput">' +
+            '<option value="Nature Reserves">Nature Reserves</option>' +
+            '<option value="Parks">Parks</option>' +
+            '<option value="Wildlife Reserves">Wildlife Reserves</option>' +
+            '</select>' +
+            '<br/>' +
+            '<label for="descriptionInput">Description: </label>' +
+            '<textarea id="descriptionInput" name="descriptionInput"></textarea>' +
+            '<br/>' +
             '<input type="button" id="submitButton" value="Submit">' +
             '</form>';
           infowindow.setContent(contentString + form);
@@ -52,19 +66,34 @@
           //need to document.on because button is dynamically created omg I literally kms figuring this out
           var name = $('#nameInput').val();
           var points = $('#pointsInput').val();
+          var cat = $('#categoryInput').val();
+          var desc = $('#descriptionInput').val();
           //console.log("Inputted name: " + name);
           //console.log("Inputted points: " + points);
             // Call API endpoint with coordinates and name
             $.ajax({
               type: "POST",
               url: "/handle_click",
-              data: JSON.stringify({lat: lat, lng: lng, name: name, points: points}),
+              data: JSON.stringify({name: name, latitude: lat, longitude: lng, points: points, category: cat, description: desc}),
               contentType: "application/json; charset=utf-8",
               dataType: "json",
+              success: function(response) {
+                infowindow.close(); //close window after done
+                console.log(response);
+                alert("Location added successfully!")
+                location.reload();
+              },
+              error: function(error) {
+                console.log(error);
+              }
             });
           infowindow.close(); //close window after done
           });
-      });
+          // Add closeclick listener to infowindow
+          google.maps.event.addListener(infowindow, 'closeclick', function() {
+            marker.setMap(null); // Remove marker from map
+          });
+        });
       }
     </script>
   </head>

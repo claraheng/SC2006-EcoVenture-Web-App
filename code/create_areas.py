@@ -19,9 +19,7 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite3_db.close()
 
-@app.route('/')
-def index():
-    return '<h1>Hello, testing area database!</h1>'
+
 
 @app.route('/areas')
 def viewareas():

@@ -33,7 +33,15 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = find_by_username(username)
+<<<<<<< HEAD
         if user and user.check_password(password):
+=======
+        if username == "admin" and password=="admin":
+            return render_template('admin.html')
+        
+        elif user and user.check_password(password):
+
+>>>>>>> 83fc0e2 (done show points and created admin page)
             session['username'] = user.username
             login_user(user)
             return jsonify({'message':'Logged in successfully'})

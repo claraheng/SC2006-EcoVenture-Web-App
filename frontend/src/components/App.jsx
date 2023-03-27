@@ -4,8 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import WhereShouldIGo from "./WhereShouldIGoPage";
 import CheckIn from "./CheckIn";
-import LoginForm from "./LoginForm";
-import CreateAccountForm from "./CreateAccountForm";
+// import LoginForm from "./LoginForm";
+// import CreateAccountForm from "./CreateAccountForm";
 
 
 function App() {

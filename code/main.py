@@ -95,7 +95,7 @@ def handle_click():
     points = data['points']
     category = data['category']
     description = data['description']
-    conn=sqlite3.connect('C:/Users/Bakase/Documents/GitHub/test2/code/DB/areas.db') #change to appropriate db path
+    conn=sqlite3.connect('DB/areas.db') #change to appropriate db path
     c = conn.cursor()
     c.execute('INSERT INTO areas (name, latitude, longitude, points, category, description) VALUES (?, ?, ?, ?, ?, ?)', (name, latitude, longitude, points, category, description))
     conn.commit()

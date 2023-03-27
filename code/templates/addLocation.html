@@ -2,6 +2,9 @@
 <html>
   <head>
     <title>Add Fitness Location</title>
+    <body>
+      <h1> Admin page</h1> 
+    </body> 
     <style>
       #map {
         height: 800px;
@@ -15,12 +18,25 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiGsmX06pkCBB0-AGc0f76kXr0SuoraKQ"></script> <!--insert your google API key here-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
+      console.log("TEST");
       function initMap() {
         var map = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 1.290270, lng: 103.851959 },
           zoom: 14,
         });
 
+        fetch("DB/areas.db")
+          .then((response) => response.json())
+          .then((data) => {
+            data.forEach((location) => {
+              const marker = new google.maps.Marker({
+                position: { lat: location.lat, lng: location.lng },
+                map,
+                title: location.name, // replace with the name of the location
+              });
+              console.log("test");
+            });
+          });
         //listener for click and store the lat lng
         google.maps.event.addListener(map, "click", function (event) {
           var marker = new google.maps.Marker({

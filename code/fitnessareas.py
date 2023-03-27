@@ -1,7 +1,4 @@
 from models import db, app
-from flask import Blueprint, jsonify
-
-areas_bp = Blueprint('fitnessareas', __name__)
 
 
 class Area(db.Model):
@@ -25,20 +22,3 @@ class Area(db.Model):
 
     def __repr__(self):
         return f'Area {self.name}'
-    
-    @areas_bp.route('/api/areas')
-    def loadareas():
-        areas_list = Area.query.all()
-        areas_dict = [
-            {
-                'name': area.name,
-                'latitude': area.latitude,
-                'longitude': area.longitude,
-                'points': area.points,
-                'category': area.category,
-                'description': area.description
-            }
-            for area in areas_list
-        ]
-        return jsonify(areas_dict)   
-        

@@ -15,34 +15,42 @@
         width: 98%;
       }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiGsmX06pkCBB0-AGc0f76kXr0SuoraKQ"></script> <!--insert your google API key here-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHFCLcZvBCRrkFPKDLtMUq_ijnTQ1aRXE"></script> <!--insert your google API key here-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
-      console.log("TEST");
       function initMap() {
         var map = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 1.290270, lng: 103.851959 },
           zoom: 14,
         });
 
-        fetch("DB/areas.db")
+        fetch("/api/areas")
           .then((response) => response.json())
           .then((data) => {
             data.forEach((location) => {
               const marker = new google.maps.Marker({
-                position: { lat: location.lat, lng: location.lng },
+                position: { lat: location.latitude, lng: location.longitude },
                 map,
                 title: location.name, // replace with the name of the location
+                icon: {
+                  url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+                }
               });
-              console.log("test");
             });
+          })
+          .catch((error) => {
+            console.log("Fetch error: ",error);
+
           });
         //listener for click and store the lat lng
+        
         google.maps.event.addListener(map, "click", function (event) {
+          console.log("event location = ", event.latitude);
           var marker = new google.maps.Marker({
             position: event.latLng,
             map: map,
           });
+        
         
           var lat = event.latLng.lat();
           var lng = event.latLng.lng();

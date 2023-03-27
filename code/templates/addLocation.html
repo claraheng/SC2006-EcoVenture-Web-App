@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Add Fitness Location</title>
     <body>
       <h1> Admin page</h1> 
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     </body> 
     <style>
       #map {
@@ -15,47 +28,58 @@
         width: 98%;
       }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiGsmX06pkCBB0-AGc0f76kXr0SuoraKQ"></script> <!--insert your google API key here-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHFCLcZvBCRrkFPKDLtMUq_ijnTQ1aRXE"></script> <!--insert your google API key here-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
-      console.log("TEST");
       function initMap() {
         var map = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 1.290270, lng: 103.851959 },
           zoom: 14,
         });
-
-        fetch("DB/areas.db")
+      
+        fetch("/api/areas")
           .then((response) => response.json())
           .then((data) => {
             data.forEach((location) => {
               const marker = new google.maps.Marker({
-                position: { lat: location.lat, lng: location.lng },
+                position: { lat: location.latitude, lng: location.longitude },
                 map,
-                title: location.name, // replace with the name of the location
+                title: location.name,
+                icon: {
+                  url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                },
               });
-              console.log("test");
+              const infowindow = new google.maps.InfoWindow({
+                content: `<strong>${location.name}</strong><br>Points: ${location.points}`,
+              });
+              marker.addListener("mouseover", () => {
+                infowindow.open(map, marker);
+              });
+              marker.addListener("mouseout", () => {
+                infowindow.close();
+              });
             });
+          })
+          .catch((error) => {
+            console.log("Fetch error: ", error);
           });
-        //listener for click and store the lat lng
+      
         google.maps.event.addListener(map, "click", function (event) {
+          console.log("event location = ", event.latitude);
           var marker = new google.maps.Marker({
             position: event.latLng,
             map: map,
           });
-        
+      
           var lat = event.latLng.lat();
           var lng = event.latLng.lng();
-          //console.log("Clicked lat: " + lat);
-          //console.log("Clicked lng: " + lng);
           var contentString =
             "<b>Clicked Location</b><br/>" + "Latitude: " + lat + "<br/>Longitude: " + lng;
           var infowindow = new google.maps.InfoWindow({
             content: contentString,
           });
           infowindow.open(map, marker);
-          
-          // Show form for user input
+      
           var form =
             '<form id="nameForm">' +
             '<label for="nameInput">Fitness location name: </label>' +
@@ -77,40 +101,45 @@
             '<input type="button" id="submitButton" value="Submit">' +
             '</form>';
           infowindow.setContent(contentString + form);
-
-          $(document).on('click', '#submitButton', function() { 
-          //need to document.on because button is dynamically created omg I literally kms figuring this out
-          var name = $('#nameInput').val();
-          var points = $('#pointsInput').val();
-          var cat = $('#categoryInput').val();
-          var desc = $('#descriptionInput').val();
-          //console.log("Inputted name: " + name);
-          //console.log("Inputted points: " + points);
-            // Call API endpoint with coordinates and name
+      
+          $(document).on("click", "#submitButton", function () {
+            var name = $("#nameInput").val();
+            var points = $("#pointsInput").val();
+            var cat = $('#categoryInput').val();
+            var desc = $("#descriptionInput").val();
             $.ajax({
               type: "POST",
               url: "/handle_click",
-              data: JSON.stringify({name: name, latitude: lat, longitude: lng, points: points, category: cat, description: desc}),
+              data: JSON.stringify({
+                name: name,
+                latitude: lat,
+                longitude: lng,
+                points: points,
+                category: cat,
+                description: desc
+              }),
               contentType: "application/json; charset=utf-8",
               dataType: "json",
-              success: function(response) {
-                infowindow.close(); //close window after done
+              success: function (response) {
+                infowindow.close(); 
                 console.log(response);
-                alert("Location added successfully!")
+                alert("Location added successfully!");
                 location.reload();
               },
-              error: function(error) {
+              error: function (error) {
                 console.log(error);
-              }
+              },
             });
-          infowindow.close(); //close window after done
+            infowindow.close(); 
           });
-          // Add closeclick listener to infowindow
-          google.maps.event.addListener(infowindow, 'closeclick', function() {
-            marker.setMap(null); // Remove marker from map
+      
+          google.maps.event.addListener(infowindow, "closeclick", function () {
+            marker.setMap(null);
           });
         });
       }
+      
+      
     </script>
   </head>
   <body onload="initMap()">

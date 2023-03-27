@@ -30,7 +30,7 @@ def login():
         password = request.form['password']
         user = find_by_username(username)
         if username == "admin" and password=="admin":
-            return render_template('admin.html')
+            return render_template('addLocation.html')
         
         elif user and user.check_password(password):
 

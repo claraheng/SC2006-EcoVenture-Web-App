@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, session, url_for,flash, Fl
 from flask_login import login_required
 from user import createAccount
 from auth import auth_bp, login_manager
+from whereshouldigo import WhereShouldIGo_bp
 from checkin import checkin_bp
 import sqlite3
 from models import app, db
@@ -16,6 +17,7 @@ from flask import jsonify # frontend
 app.secret_key = 'your_secret_key'
 app.register_blueprint(auth_bp)
 app.register_blueprint(checkin_bp)
+app.register_blueprint(WhereShouldIGo_bp)
 login_manager.init_app(app)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

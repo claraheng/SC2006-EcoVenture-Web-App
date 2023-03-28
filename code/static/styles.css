@@ -29,12 +29,25 @@ body{
     background-color: #9DC08B;
 }
 
+.light-section{
+    background-color: #EDF1D6;
+}
+
+/*-----------GENERAL CONTAINERS-----------*/
+.container-half-screen{
+    height:100vh;
+}
+
 /*-----------GENERAL COMPONENTS-----------*/
 
 /* EcoVenture Brand */
 .brand{
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
     font-family: 'Pacifico', sans-serif;
     color: #EDF1D6;
+    font-size: 2.5rem;
 }
 
 /* Buttons */
@@ -47,12 +60,97 @@ body{
     background: #609966;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
+    outline: 0px;
+    margin: 1rem;
 }
   
 .btn-big:hover {
     background: #40513B;
     text-decoration: none;
 }
+
+.submit-btn{
+text-align: center;
+    -webkit-border-radius: 11;
+    -moz-border-radius: 11;
+    border-radius: 19px;
+    color: #EDF1D6;
+    font-size: 1.3rem;
+    background: #609966;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    outline: 0px;
+    margin: 1rem;
+    border-style:none;
+}
+
+.submit-btn:hover {
+    background: #40513B;
+    text-decoration: none;
+}
+/*Login Page*/
+.login-img-container{
+  background-image: url("../static/images/login-img.jpeg");
+}
+
+.login-page-slogan{
+    margin: 30% 15% 20%;
+    text-align: center;
+    font-family: 'Pacifico', sans-serif;
+    color: white;
+    font-size: 5rem;
+    text-shadow: 3px 3px #40513B;
+}
+
+.login-page-title{
+    text-align: center;
+    font-family: 'Itim',cursive;
+    color: #40513B;
+    margin: 0.5rem 4rem;
+    font-size: 3rem;
+}
+
+/*Input boxes*/
+.input-div{
+    margin: 10% auto;
+    text-align: center;
+}
+
+.input-box{
+text-align: left;
+margin: 0 10%;
+}
+
+.input-labels{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    color: #609966;
+    font-size: 1.5rem;
+    margin: 4px;
+}
+
+.input-field{
+    border-width: 3px;
+    border-color: #609966;
+    border-style: solid;
+    color:#40513B;
+    font-family:'Rubik', sans-serif;
+    font-weight: 400;
+      background-color: rgba(237, 241, 214,1);
+      width: 100%;
+      outline: 0px;
+      outline-color: transparent;
+      border-radius: 19px;
+      padding: 10px 15px;
+      display: block;
+     margin: 0 auto;
+}
+
+.input-field::placeholder{
+    color: #609966;
+    opacity: 0.4;
+}
+
 
 /*Search Bar*/
 .search-bar{
@@ -93,7 +191,7 @@ border-style: solid;
 
 /* Navigation Bar */
 .navbar{
-    padding-bottom: 4.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .navbar-brand{
@@ -115,7 +213,7 @@ border-style: solid;
     color:white;
 }
 
-/*--BERNS PAGES IDK WHAT TO NAME THIS YET LOL-----*/
+
 /*Title Section*/
 .title-section{
     background-image: url("../src/images/leaves-bg.jpg"); /*idk why this dont work but ohwells*/
@@ -156,10 +254,25 @@ border-style: solid;
 .card{
     padding: 5px;
     background-color:#EDF1D6;
+    text-align: center;
 }
 
 .card-title{
     font-family: 'Itim', cursive;
     color:#40513B;
     text-align: center;
+    font-size: 4rem;
+}
+
+.card-description{
+    margin: 2rem;
+    color:#609966;
+    font-weight: 400;
+    text-align: center;
+    font-size: 2.3rem;
+}
+
+.card-img{
+    height: 10rem;
+    width: 20rem;
 }

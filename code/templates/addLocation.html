@@ -52,11 +52,38 @@
               const infowindow = new google.maps.InfoWindow({
                 content: `<strong>${location.name}</strong><br>Points: ${location.points}`,
               });
+              const editwindow = new google.maps.InfoWindow({
+              content: `
+                <strong>${location.name}</strong><br>
+                <form>
+                  <label for="points-input">Points:</label>
+                  <input id="points-input" type="number" value="${location.points}">
+                  <br><br>
+                  <button id="edit-btn" type="submit">Edit</button>
+                </form>
+                <button onclick="deleteLocation('${location._id}')">Delete</button>
+              `,
+              });
               marker.addListener("mouseover", () => {
                 infowindow.open(map, marker);
               });
               marker.addListener("mouseout", () => {
                 infowindow.close();
+              });
+              marker.addListener('click', () => {
+                editwindow.open(map, marker);
+                // Listen for the edit button click
+                const editBtn = document.getElementById("edit-btn");
+                $(document).on("click", "#edit-btn", (e) => {
+                  e.preventDefault();
+                  const pointsInput = document.getElementById("points-input");
+                  const newPoints = parseInt(pointsInput.value, 10);
+
+                  // Update the location.points value and update the InfoWindow content
+                  location.points = newPoints;
+                  infowindow.setContent(`<strong>${location.name}</strong><br>Points: ${location.points}`);
+                  editwindow.close();
+                });
               });
             });
           })

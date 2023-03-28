@@ -1,26 +1,66 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Login</title>
+
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Itim&family=Pacifico&family=Rubik:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--Bootstrap-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="../static/styles.css" />
+
+    <!--Favicon-->
+    <script
+      src="https://kit.fontawesome.com/7d3131a49e.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     {% if error %}
-      <p>{{ error }}</p>
+    <p>{{ error }}</p>
     {% endif %}
-    <form action="/login" method="post">
-      <div>
-        <label>Username:</label>
-        <input type="text" name="username">
+
+    
+    <div class="row">
+      <div class="col-lg-7 container-half-screen login-img-container">
+        <h1 class="brand">EcoVenture</h1>
+        <h1 class="login-page-slogan">Find your adventure in nature with EcoVenture.</h1>
       </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" name="password">
-      </div>
-      <div>
-        <input type="submit" value="Login">
-      </div>
-    </form>
+      <div class="col-lg-5 container container-half-screen">
+        <div class="input-div">
+          <h1 class="login-page-title">Login into your EcoVenture account:</h1>
+          <form action="/login" method="post">
+            <div class="input-box">
+              <label class="input-labels">Username</label>
+              <input class="input-field" type="text" name="username" placeholder="Enter your username..."/>
+            </div>
+            <div class="input-box">
+              <label class="input-labels">Password</label>
+              <input class="input-field" type="password" name="password" placeholder="Enter your password..."/>
+            </div>
+              <button class="submit-btn" type="submit" value="Login">Login</button>
+          </form>
+        </div>
+      </div>  
+    </div>
   </body>
 </html>
-

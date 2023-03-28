@@ -61,7 +61,7 @@
                   <br><br>
                   <button id="edit-btn" type="submit">Edit</button>
                 </form>
-                <button onclick="deleteLocation('${location._id}')">Delete</button>
+                <button id="delete-btn">Delete</button>
               `,
               });
               marker.addListener("mouseover", () => {
@@ -81,7 +81,50 @@
 
                   // Update the location.points value and update the InfoWindow content
                   location.points = newPoints;
+                  const name = location.name
+                  $.ajax({
+                    type: "POST",
+                    url: "/handle_edit",
+                    data: JSON.stringify({
+                      points: newPoints,
+                      name: location.name,
+                    }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                      infowindow.close(); 
+                      console.log(response);
+                      alert("Points altered successfully!");
+                      //location.reload();
+                    },
+                    error: function (error) {
+                      console.log(error);
+                    },
+                  });
+                  editwindow.close();
                   infowindow.setContent(`<strong>${location.name}</strong><br>Points: ${location.points}`);
+                });
+                $(document).on("click", "#delete-btn", (e) => {
+                  e.preventDefault();
+                  const name = location.name
+                  $.ajax({
+                    type: "POST",
+                    url: "/handle_delete",
+                    data: JSON.stringify({
+                      name: location.name,
+                    }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                      infowindow.close(); 
+                      console.log(response);
+                      alert("Area deleted successfully!");
+                      marker.setMap(null)
+                    },
+                    error: function (error) {
+                      console.log(error);
+                    },
+                  });
                   editwindow.close();
                 });
               });

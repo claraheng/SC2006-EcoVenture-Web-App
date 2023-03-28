@@ -95,7 +95,7 @@ def handle_click():
     points = data['points']
     category = data['category']
     description = data['description']
-    conn=sqlite3.connect('DB/areas.db') #change to appropriate db path
+    conn=sqlite3.connect('C:/Users/wongr/OneDrive/Documents/GitHub/sc2006lab/code/DB/areas.db') #change to appropriate db path
     c = conn.cursor()
     c.execute('INSERT INTO areas (name, latitude, longitude, points, category, description) VALUES (?, ?, ?, ?, ?, ?)', (name, latitude, longitude, points, category, description))
     conn.commit()
@@ -103,6 +103,34 @@ def handle_click():
     print('Success')  # print a success message
     message = 'Successfully added location: ' + name
     return jsonify({'result': 'Success', 'message': message})
+
+@app.route('/handle_edit', methods=['POST'])
+def handle_edit():
+    data = request.get_json()
+    name = data['name']
+    points = data['points']
+    conn=sqlite3.connect('C:/Users/wongr/OneDrive/Documents/GitHub/sc2006lab/code/DB/areas.db') #change to appropriate db path
+    c = conn.cursor()
+    c.execute('UPDATE areas SET points = ? WHERE name = ?', [points, name])
+    conn.commit()
+    conn.close()
+    print('Success')  # print a success message
+    message = 'Successfully altered points for location: ' + name
+    return jsonify({'result': 'Success', 'message': message})
+
+@app.route('/handle_delete', methods=['POST'])
+def handle_delete():
+    data = request.get_json()
+    name = data['name']
+    conn=sqlite3.connect('C:/Users/wongr/OneDrive/Documents/GitHub/sc2006lab/code/DB/areas.db') #change to appropriate db path
+    c = conn.cursor()
+    c.execute('DELETE FROM areas WHERE name = ?', [name])
+    conn.commit()
+    conn.close()
+    print('Success')  # print a success message
+    message = 'Successfully deleted location: ' + name
+    return jsonify({'result': 'Success', 'message': message})
+
 
 @app.route('/logout')
 def logout():

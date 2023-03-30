@@ -1,6 +1,9 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.security import check_password_hash
 from models import db
+from flask import Blueprint
+
+
 
 
 class User(db.Model):

@@ -1,21 +1,30 @@
-from flask import render_template, request, redirect, session, url_for,flash 
+from flask import render_template, request, redirect, session, url_for,flash, Flask 
 from flask_login import login_required
 from user import createAccount
 from auth import auth_bp, login_manager
+from fitnessareas import areas_bp
+from whereshouldigo import WhereShouldIGo_bp
 from checkin import checkin_bp
 import sqlite3
 from models import app, db
+#from flask_cors import CORS # frontend
+from flask import jsonify # frontend
+
+# frontend
+#app = Flask(__name__)
+#CORS(app)
 
 
 app.secret_key = 'your_secret_key'
 app.register_blueprint(auth_bp)
 app.register_blueprint(checkin_bp)
+app.register_blueprint(WhereShouldIGo_bp)
+app.register_blueprint(areas_bp)
 login_manager.init_app(app)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 
-#db.init_app(app)
 items = [
         {'category': 'Nature Reserves', 'image': 'image1', 'description': 'protected areas of importance for flora, fauna, or features of geological or other special interest'},
         {'category': 'Parks', 'image': 'image2', 'description': 'areas of natural, semi-natural or planted space for  enjoyment and recreation'},
@@ -51,15 +60,15 @@ def createAccountView():
         
         if password1 != password2:
             error = 'Passwords do not match'
-            return render_template('createAccount.html', error=error)
+            return jsonify({'message': 'Passwords do not match'}), 401
 
         try:
             createAccount(username, password1, points)
             print("sign up successful")
-            return redirect(url_for('auth.login'))
+            return {'message': 'success'}
         except ValueError as e:
             error = str(e)
-            return render_template('createAccount.html', error=error)
+            return jsonify({'message': 'Error!'}), 401
 
     else:
         error= None
@@ -79,18 +88,49 @@ def addLocation():
 
 @app.route('/handle_click', methods=['POST']) #for getting location input only, don't open this
 def handle_click():
-    data = request.get_json() #need to change all this later, temporary I use for testing earlier
-    lat = data['lat']
-    lng = data['lng']
+    data = request.get_json()
     name = data['name']
+    latitude = data['latitude']
+    longitude = data['longitude']
     points = data['points']
-    conn = sqlite3.connect("mydatabase.db") #need to change all this later, temporary I use for testing earlier
+    category = data['category']
+    description = data['description']
+    conn=sqlite3.connect('C:/Users/wongr/OneDrive/Documents/GitHub/sc2006lab/code/DB/areas.db') #change to appropriate db path
     c = conn.cursor()
-    c.execute("INSERT INTO fitlocations (lat, lng, name, points) VALUES (?, ?, ?, ?)", (lat, lng, name, points)) #need to change later
+    c.execute('INSERT INTO areas (name, latitude, longitude, points, category, description) VALUES (?, ?, ?, ?, ?, ?)', (name, latitude, longitude, points, category, description))
     conn.commit()
     conn.close()
-    # Store this into db
-    return 'Success'
+    print('Success')  # print a success message
+    message = 'Successfully added location: ' + name
+    return jsonify({'result': 'Success', 'message': message})
+
+@app.route('/handle_edit', methods=['POST'])
+def handle_edit():
+    data = request.get_json()
+    name = data['name']
+    points = data['points']
+    conn=sqlite3.connect('C:/Users/wongr/OneDrive/Documents/GitHub/sc2006lab/code/DB/areas.db') #change to appropriate db path
+    c = conn.cursor()
+    c.execute('UPDATE areas SET points = ? WHERE name = ?', [points, name])
+    conn.commit()
+    conn.close()
+    print('Success')  # print a success message
+    message = 'Successfully altered points for location: ' + name
+    return jsonify({'result': 'Success', 'message': message})
+
+@app.route('/handle_delete', methods=['POST'])
+def handle_delete():
+    data = request.get_json()
+    name = data['name']
+    conn=sqlite3.connect('C:/Users/wongr/OneDrive/Documents/GitHub/sc2006lab/code/DB/areas.db') #change to appropriate db path
+    c = conn.cursor()
+    c.execute('DELETE FROM areas WHERE name = ?', [name])
+    conn.commit()
+    conn.close()
+    print('Success')  # print a success message
+    message = 'Successfully deleted location: ' + name
+    return jsonify({'result': 'Success', 'message': message})
+
 
 @app.route('/logout')
 def logout():

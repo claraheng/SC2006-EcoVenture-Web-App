@@ -2,7 +2,9 @@
 from flask import Flask, g, request, jsonify
 import sqlite3
 from models import app 
+from weather import *
 
+temperature=getTemperature()
 
 def connect_db():
     sql = sqlite3.connect('./areas.db')
@@ -19,9 +21,7 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite3_db.close()
 
-@app.route('/')
-def index():
-    return '<h1>Hello, testing area database!</h1>'
+
 
 @app.route('/areas')
 def viewareas():
@@ -30,7 +30,8 @@ def viewareas():
     results = cursor.fetchall()
     rows = ''
     for row in results:
-        rows += f"<h1>The ID is {row[0]}. <br> The Name is {row[1]}. <br> The Latitude is {row[2]}. <br> The Longitude is {row[3]}. <br> The Points is {row[4]}. <br> The Category is {row[5]}. <br> The Description is {row[6]}. </h1> "
+        weather=getForecast(getRegion(row[2], row[3]))
+        rows += f"<h1>The ID is {row[0]}. <br> The Name is {row[1]}. <br> The Latitude is {row[2]}. <br> The Longitude is {row[3]}. <br> The Points is {row[4]}. <br> The Category is {row[5]}. <br> The Description is {row[6]}. <br> The Weather is {weather}. <br> The Temperature is {temperature}°C.</h1> "
     return rows
 
 #CREATE
@@ -55,7 +56,8 @@ def get_area(area_id):
     result = cursor.fetchone()
     if not result:
         return jsonify({'error': 'Area not found'})
-    return f"<h1>The Id is {result['id']}. <br> The Name is {result['name']}. <br> The Latitude is {result['latitude']}. <br> The Longitude is {result['longitude']}. <br> The Points is {result['points']}. <br> The Category is {result['category']}. <br> The Description is {result['description']}. </h1>"
+    weather=getForecast(getRegion(result['latitude'], result['longitude']))
+    return f"<h1>The Id is {result['id']}. <br> The Name is {result['name']}. <br> The Latitude is {result['latitude']}. <br> The Longitude is {result['longitude']}. <br> The Points is {result['points']}. <br> The Category is {result['category']}. <br> The Description is {result['description']}. <br> The Weather is {weather}. <br> The Temperature is {temperature}°C.</h1>"
     #return jsonify({'id': result['id'], 'name': result['name'], 'age': result['age']})
 
 #UPDATE

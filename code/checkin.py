@@ -10,6 +10,15 @@ import json
 checkin_bp = Blueprint('checkin', __name__)
 
 
+@checkin_bp.route('/showPoints')
+@login_required
+def showPoints():
+    username = session.get('username')
+    user = User.query.filter_by(username=username).first()
+    return f'{user.username} now has {user.points}'
+
+
+
 @checkin_bp.route('/check_in', methods=['GET'])
 @login_required
 def check_in():
@@ -56,7 +65,7 @@ def get_closest_fitness_area(location):
     min_distance = float('inf')
 
     for area in areas:
-        distance = calculate_distance(location, (area.latitude, area.longtitude))
+        distance = calculate_distance(location, (area.latitude, area.longitude))
         print("type=",type(distance))
         if distance < min_distance:
             min_distance = distance
@@ -65,9 +74,9 @@ def get_closest_fitness_area(location):
 
 def is_user_within_proximity(user_location, area):
     # Check if the user is within the proximity of the closest fitness area
-    distance = calculate_distance(user_location, (area.latitude, area.longtitude))
+    distance = calculate_distance(user_location, (area.latitude, area.longitude))
     print("distance=",distance)
-    if distance <= 0.1:
+    if distance <= 10:
         return True
     else:
         return False

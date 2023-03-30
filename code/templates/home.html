@@ -1,38 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Website</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>EcoVenture</title>
+
+     <!--Favicon-->
+     <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon.ico"/>
+
+    <!--Google Fonts-->
+   <link rel="preconnect" href="https://fonts.googleapis.com" />
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link
+     href="https://fonts.googleapis.com/css2?family=Itim&family=Pacifico&family=Rubik:wght@300;400&display=swap"
+     rel="stylesheet"
+   />
+     <!--Bootstrap-->
+     <link
+     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+     rel="stylesheet"
+     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+     crossorigin="anonymous"
+   />
+   <script
+     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+     crossorigin="anonymous"
+   ></script>
+ <!--Stylesheet-->
+   <link rel="stylesheet" href="../static/styles.css" />
+   <!--Favicon-->
+   <script src="https://kit.fontawesome.com/7d3131a49e.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">My Website</a>
+<div class="homepage">
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/#">EcoVenture</a>
+
+        <ul class="navbar-nav ms-auto"> 
+
+        <li class="nav-item">
+            <a class="nav-link" href="/createAccount"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+        </li>
+      </ul> 
+    </nav>
+
+    <div class="container homepage-title-section">
+        <h1 class="homepage-title">Welcome to EcoVenture</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris interdum ligula ac eros auctor, nec dapibus lorem semper. Sed laoreet purus ut orci lobortis, sit amet molestie nibh maximus. Donec aliquet eros sed arcu luctus, vel fermentum velit vestibulum. Integer imperdiet nunc eu metus semper, sed interdum est vulputate. In non elit vel elit bibendum vehicula. Nam sed justo auctor, interdum ex et, mattis velit. Praesent fringilla dolor vitae lectus laoreet, vel auctor purus feugiat. Donec in nisl lacus.</p>
+   </div> 
+
+    <div class="colored-section">
+        <div class="feature-section row">
+            <div class="col-lg-6">
+                <image class="feature-img" src="../static/images/wsig-feature-img.jpeg"/>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/createAccount"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                </ul>
+            <div class="col-lg-6">
+                <h1 class="feature-title">Where Should I Go?</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris interdum ligula ac eros auctor, nec dapibus lorem semper. Sed laoreet purus ut orci lobortis, sit amet molestie nibh maximus. Donec aliquet eros sed arcu luctus, vel fermentum velit vestibulum. Integer imperdiet nunc eu metus semper, sed interdum est vulputate. In non elit vel elit bibendum vehicula. Nam sed justo auctor, interdum ex et, mattis velit. Praesent fringilla dolor vitae lectus laoreet, vel auctor purus feugiat. Donec in nisl lacus.</p>
             </div>
         </div>
-    </nav>
-    <div class="container">
-        <h1>Welcome to My Website</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris interdum ligula ac eros auctor, nec dapibus lorem semper. Sed laoreet purus ut orci lobortis, sit amet molestie nibh maximus. Donec aliquet eros sed arcu luctus, vel fermentum velit vestibulum. Integer imperdiet nunc eu metus semper, sed interdum est vulputate. In non elit vel elit bibendum vehicula. Nam sed justo auctor, interdum ex et, mattis velit. Praesent fringilla dolor vitae lectus laoreet, vel auctor purus feugiat. Donec in nisl lacus.</p>
+         </div>
+    <div>
+
+        <div class="feature-section row">
+            <div class="col-lg-6">
+                <h1 class="feature-title">Plan your route to our Fitness Areas</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris interdum ligula ac eros auctor, nec dapibus lorem semper. Sed laoreet purus ut orci lobortis, sit amet molestie nibh maximus. Donec aliquet eros sed arcu luctus, vel fermentum velit vestibulum. Integer imperdiet nunc eu metus semper, sed interdum est vulputate. In non elit vel elit bibendum vehicula. Nam sed justo auctor, interdum ex et, mattis velit. Praesent fringilla dolor vitae lectus laoreet, vel auctor purus feugiat. Donec in nisl lacus.</p>
+            </div>
+            <div class="col-lg-6">
+                <image class="feature-img" src="../static/images/route-planning-feature-img.png"/>
+            </div>
+            
+        </div>
+         </div>
+
+    
+         <div class="colored-section cta-section">
+            <h2 class="cta-title">Sign up for EcoVenture today!</h1>
+            <a href="/createAccount"><button class="btn-big">Create an EcoVenture Account</button></a>
+            <p>Already have an account? <a href="/login">Log in</a></p>
+         </div>
+
+         <footer class="light-section footer-section">
+            <p class="footer-description">© Copyright Ecoventure</p>
+         </footer>
+
     </div>
+</div>
 </body>
 </html>

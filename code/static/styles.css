@@ -1,0 +1,333 @@
+/* -----------GENERAL STYLES----------- */
+
+h1{
+    font-family: 'Pacifico', sans-serif;
+    color: white;
+    font-size: 5rem;
+}
+
+h2{
+    font-family: 'Rubik', sans-serif;
+    color: white;
+    font-size: 5rem;
+}
+h3{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    color: white;
+    font-size: 1.5rem;
+}
+
+body{
+    font-family:'Rubik', sans-serif;
+    font-weight: 300;
+    background-color: #EDF1D6;
+    color: white;
+}
+/*-----------GENERAL SECTION STYLING-----------*/
+.colored-section{
+    background-color: #40513B;
+}
+
+.light-section{
+    background-color: #EDF1D6;
+}
+
+/*-----------GENERAL CONTAINERS-----------*/
+.container-half-screen{
+    height:100vh;
+}
+
+/*-----------GENERAL COMPONENTS-----------*/
+
+/* EcoVenture Brand */
+.brand{
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    font-family: 'Pacifico', sans-serif;
+    color: #EDF1D6;
+    font-size: 2.5rem;
+}
+
+/* Buttons */
+.btn-big{
+    -webkit-border-radius: 11;
+    -moz-border-radius: 11;
+    border-radius: 11px;
+    color: #EDF1D6;
+    font-size: 2rem;
+    background: #609966;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    outline: 0px;
+    margin: 1rem;
+}
+  
+.btn-big:hover {
+    background: #40513B;
+    text-decoration: none;
+}
+
+.submit-btn{
+text-align: center;
+    -webkit-border-radius: 11;
+    -moz-border-radius: 11;
+    border-radius: 19px;
+    color: #EDF1D6;
+    font-size: 1.3rem;
+    background: #609966;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    outline: 0px;
+    margin: 1rem;
+    border-style:none;
+}
+
+.submit-btn:hover {
+    background: #40513B;
+    text-decoration: none;
+}
+
+/*Search Bar*/
+.search-bar{
+    border-width: 3px;
+    border-color: #609966;
+    border-style: solid;
+      background-color: rgba(237, 241, 214,1);
+      width: 70%;
+      outline: 0px;
+      outline-color: transparent;
+      border-radius: 19px;
+      padding: 10px 15px;
+      margin: 0 auto 10px auto;
+      display: block;
+      margin: 20px auto;
+    }
+    
+    .search-icon{
+        color: #609966;
+    }
+    .search-input{
+        color: #609966;
+        border: none;
+        outline: 0px;
+        text-align: left;
+      font-family: 'Rubik',cursive;
+      font-size: 20px;
+      font-weight: 300;
+      height: 100%;
+      width: 92%;
+      background-color: transparent;
+    }
+    
+    .search-input::placeholder{
+        color: #609966;
+        opacity: 0.4;
+    }
+    
+    /* Navigation Bar */
+    .navbar{
+        padding-bottom: 0.5rem;
+    }
+    
+    .navbar-brand{
+        font-family: 'Pacifico', sans-serif;
+        font-size: 2.5rem;
+        margin-left: 1.5rem;
+    }
+    
+    .nav-item{
+        padding: 0 18px;
+        font-weight: 400;
+    }
+    
+    .nav-link{
+        font-size: 1.2rem;
+    }
+    
+    .nav-link:hover{
+        color:white;
+    }
+
+    /*Footer*/
+    .footer-section{
+        padding: 0.5rem 0;
+    }
+
+    .footer-description{
+        color: grey;
+        size: 1rem;
+        text-align: center;
+        margin: 2% auto;
+    }
+
+/*-----------Login Page-----------*/
+.login-img-container{
+  background-image: url("../static/images/login-img.jpeg");
+  background-size: cover;
+}
+
+.login-page-slogan{
+    margin: 30% 15% 20%;
+    text-align: center;
+    font-family: 'Pacifico', sans-serif;
+    color: white;
+    font-size: 5rem;
+    text-shadow: 3px 3px #40513B;
+}
+
+.login-page-title{
+    text-align: center;
+    font-family: 'Itim',cursive;
+    color: #40513B;
+    margin: 0.5rem 4rem;
+    font-size: 3rem;
+}
+
+/*Input boxes*/
+.input-div{
+    margin: 20% auto;
+    text-align: center;
+}
+
+.input-box{
+text-align: left;
+margin: auto 10%;
+}
+
+.input-labels{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    color: #609966;
+    font-size: 1.5rem;
+    margin: 4px;
+}
+
+.input-field{
+    border-width: 3px;
+    border-color: #609966;
+    border-style: solid;
+    color:#40513B;
+    font-family:'Rubik', sans-serif;
+    font-weight: 400;
+      background-color: rgba(237, 241, 214,1);
+      width: 100%;
+      outline: 0px;
+      outline-color: transparent;
+      border-radius: 19px;
+      padding: 10px 15px;
+      display: block;
+     margin: 0 auto;
+}
+
+.input-field::placeholder{
+    color: #609966;
+    opacity: 0.4;
+}
+
+/*-----------Home Page-----------*/
+.homepage{
+    background-image: url(../static/images/home-bg.jpeg);
+    background-size: cover;
+}
+
+.homepage-title-section{
+    padding: 5% 7%; 
+}
+
+.homepage-title{
+    color:#EDF1D6;
+    text-align: center;
+    font-size: 6rem;
+}
+
+/* Home page sections*/
+.feature-section{
+    padding: 5% 7%;
+    text-align: center;
+}
+
+.feature-title{
+    margin: 1rem 0;
+}
+
+.feature-img{
+    margin: 1% 3%;
+    height: 25rem;
+    width: auto;
+}
+
+/*CTA section*/
+.cta-section{
+    padding: 3% 15%;
+    text-align: center;
+}
+
+.cta-title{
+    margin: 1% 7%;
+}
+
+
+/*Title Section*/
+.title-section{
+    background-image: url("../src/images/leaves-bg.jpg"); /*idk why this dont work but ohwells*/
+    padding:3% 3% 5%;
+}
+
+.title{
+    text-align: center;
+    font-family: 'Itim',cursive;
+    font-size: 5.5rem;
+}
+
+.description{
+    text-align: center;
+}
+
+/*Menu Section*/
+.menu-item{
+    text-align: center;
+    padding: 7rem;
+}
+
+.menu-heading{
+    font-family: 'Rubik', sans-serif;
+    font-size: 3rem;
+    color: #609966;
+}
+ 
+/*WSIG Menu Section*/
+#wsig-menu-section{
+    padding: 10px 15px;
+}
+
+.card-column{
+    padding: 1rem 1rem;
+}
+
+.card{
+    padding: 5px;
+    background-color:#EDF1D6;
+    text-align: center;
+}
+
+.card-title{
+    font-family: 'Itim', cursive;
+    color:#40513B;
+    text-align: center;
+    font-size: 4rem;
+}
+
+.card-description{
+    margin: 2rem;
+    color:#609966;
+    font-weight: 400;
+    text-align: center;
+    font-size: 2.3rem;
+}
+
+.card-img{
+    height: 10rem;
+    width: 20rem;
+}

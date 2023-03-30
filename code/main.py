@@ -54,6 +54,7 @@ def user():
 def createAccountView():
     if request.method == 'POST':
         username = request.form['username']
+        email = request.form['email']
         password1 = request.form['password1']
         password2 = request.form['password2']
         points = 0
@@ -63,7 +64,7 @@ def createAccountView():
             return jsonify({'message': 'Passwords do not match'}), 401
 
         try:
-            createAccount(username, password1, points)
+            createAccount(username, email, password1, points)
             print("sign up successful")
             return {'message': 'success'}
         except ValueError as e:

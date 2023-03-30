@@ -21,7 +21,7 @@ def load_user(username):
         if not user_data:
             return None
         
-        return User(user_data[0],user_data[1],user_data[2])
+        return User(user_data[0],user_data[1],user_data[2], user_data[3])
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():

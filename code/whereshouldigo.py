@@ -1,6 +1,8 @@
 from flask import render_template, request, redirect, g, jsonify, url_for  , Blueprint
 from flask_login import login_required
 import sqlite3
+from weather import getRegion, getForecast
+from checkin import get_user_location, calculate_distance
 from models import app
 
 WhereShouldIGo_bp = Blueprint('WhereShouldIGo', __name__)
@@ -29,6 +31,20 @@ def whereshouldigo():
     ]
     return render_template("whereshouldigo.html", items=items)
 
+@app.route('/search')
+def search():
+    return render_template('search.html')
+
+@app.route('/results')
+def results():
+    query = request.args.get('query')
+    conn = sqlite3.connect('areas.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM areas WHERE name LIKE ?", ('%' + query + '%',))
+    results = c.fetchall()
+    conn.close()
+    return render_template('results.html', query=query, results=results)
+
 @WhereShouldIGo_bp.route('/route1', methods=['POST'])
 #@login_required
 def route1():
@@ -52,6 +68,29 @@ def get_areas_by_category(category):
     results = cursor.fetchall()
     if not results:
         return jsonify({'error': 'No areas found for category: {}'.format(category)})
+    user_location = get_user_location()
+    
+    for i in range(len(results)):
+        row = results[i]
+        lat = row['latitude']
+        lng = row['longitude']
+
+        # Calculate distance between user's location and area location
+        area_location = (lat, lng)
+        distance_km = calculate_distance(user_location, area_location)
+        
+        # Get weather for area
+        region = getRegion(lat, lng)
+        weather = getForecast(region)
+        
+        area_dict = dict(row)
+        area_dict['distance_km'] = distance_km
+        area_dict['weather'] = weather
+        results[i] = area_dict
+
+        # Sort results by distance in ascending order
+    results = sorted(results, key=lambda x: x['distance_km'])
+    
     return render_template('areas_by_category.html', results=results)
 
 @WhereShouldIGo_bp.route('/map/<int:id>')
@@ -80,5 +119,12 @@ def show_map(id):
     latitude, longitude = row
 
     # Render a template that displays the location on a map
+    travel = {
+        'destination': f"{latitude},{longitude}",
+        'mode': 'DRIVING' # or 'WALKING', 'BICYCLING', 'TRANSIT'
+    }
+
     return render_template('map.html', latitude=latitude, longitude=longitude)
 
+if __name__ == '__main__':
+    app.run()

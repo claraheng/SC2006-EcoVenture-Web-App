@@ -13,6 +13,8 @@
                 <!-- Your Columns HERE -->
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
+                <th scope="col">Distance</th>
+                <th scope="col">Weather</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -22,7 +24,9 @@
             <tr>
               <td>{{ result[1] }}</td>
               <td>{{ result[6] }}</td>
-              <td><a href="#">View on map</a></td>
+              <td>{{ '%.2f' % result[7] }} km</td>
+              <td>{{ result[8] }}</td>
+              <td><a href="/map/{{ result[0] }}">View on Map</a></td>
             </tr>
             {% endfor %}
         </tbody>

@@ -21,8 +21,9 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite3_db.close()
 
-@WhereShouldIGo_bp.route("/whereshouldigo")
-@login_required
+#@WhereShouldIGo_bp.route("/whereshouldigo")
+@app.route('/whereshouldigo')
+#@login_required
 def whereshouldigo():
     items = [
         {'category': 'Nature Reserves', 'image': 'image1', 'description': 'Protected areas of importance for flora, fauna, or features of geological or other special interest.'},
@@ -45,22 +46,24 @@ def results():
     conn.close()
     return render_template('results.html', query=query, results=results)
 
-@WhereShouldIGo_bp.route('/route1', methods=['POST'])
+#@WhereShouldIGo_bp.route('/route1', methods=['POST'])
+@app.route('/route1', methods=['POST'])
 #@login_required
 def route1():
     if request.method == 'POST':
         item_id = request.form['item_id']
         button_value = request.form['submit_button']
         if button_value == 'button1':
-            return redirect(url_for('WhereShouldIGo.get_areas_by_category', category='Nature Reserve'))
+            return redirect(url_for('get_areas_by_category', category='Nature Reserve'))
         elif button_value == 'button2':
-            return redirect(url_for('WhereShouldIGo.get_areas_by_category', category='Park'))
+            return redirect(url_for('get_areas_by_category', category='Park'))
         elif button_value == item_id + 'button3':
-            return redirect(url_for('WhereShouldIGo.get_areas_by_category', category='Wildlife Reserve'))
+            return redirect(url_for('get_areas_by_category', category='Wildlife Reserve'))
     # Render the template with the form
     return render_template('whereshouldigo.html')
 
-@WhereShouldIGo_bp.route('/areas/category/<category>', methods=['GET'])
+#@WhereShouldIGo_bp.route('/areas/category/<category>', methods=['GET'])
+@app.route('/areas/category/<category>', methods=['GET'])
 def get_areas_by_category(category):
     db = get_db()
 
@@ -93,7 +96,8 @@ def get_areas_by_category(category):
     
     return render_template('areas_by_category.html', results=results)
 
-@WhereShouldIGo_bp.route('/map/<int:id>')
+#@WhereShouldIGo_bp.route('/map/<int:id>')
+@app.route('/map/<int:id>')
 def show_map(id):
     # Connect to the database
     conn = sqlite3.connect('DB/areas.db')
@@ -124,7 +128,7 @@ def show_map(id):
         'mode': 'DRIVING' # or 'WALKING', 'BICYCLING', 'TRANSIT'
     }
 
-    return render_template('map.html', latitude=latitude, longitude=longitude)
+    return render_template('directions.html', travel=travel)
 
 if __name__ == '__main__':
     app.run()

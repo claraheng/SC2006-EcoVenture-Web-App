@@ -6,9 +6,10 @@ from fitnessareas import areas_bp
 from whereshouldigo import WhereShouldIGo_bp
 from checkin import checkin_bp
 import sqlite3
-from models import app, db
+from models import app, areasdb
 #from flask_cors import CORS # frontend
 from flask import jsonify # frontend
+
 
 # frontend
 #app = Flask(__name__)
@@ -24,6 +25,7 @@ login_manager.init_app(app)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
+
 
 items = [
         {'category': 'Nature Reserves', 'image': 'image1', 'description': 'protected areas of importance for flora, fauna, or features of geological or other special interest'},
@@ -96,7 +98,7 @@ def handle_click():
     points = data['points']
     category = data['category']
     description = data['description']
-    conn=sqlite3.connect('C:/Users/wongr/OneDrive/Documents/GitHub/sc2006lab/code/DB/areas.db') #change to appropriate db path
+    conn=sqlite3.connect(areasdb) #change to appropriate db path
     c = conn.cursor()
     c.execute('INSERT INTO areas (name, latitude, longitude, points, category, description) VALUES (?, ?, ?, ?, ?, ?)', (name, latitude, longitude, points, category, description))
     conn.commit()
@@ -110,7 +112,7 @@ def handle_edit():
     data = request.get_json()
     name = data['name']
     points = data['points']
-    conn=sqlite3.connect('C:/Users/wongr/OneDrive/Documents/GitHub/sc2006lab/code/DB/areas.db') #change to appropriate db path
+    conn=sqlite3.connect(areasdb) #change to appropriate db path
     c = conn.cursor()
     c.execute('UPDATE areas SET points = ? WHERE name = ?', [points, name])
     conn.commit()
@@ -123,7 +125,7 @@ def handle_edit():
 def handle_delete():
     data = request.get_json()
     name = data['name']
-    conn=sqlite3.connect('C:/Users/wongr/OneDrive/Documents/GitHub/sc2006lab/code/DB/areas.db') #change to appropriate db path
+    conn=sqlite3.connect(areasdb) #change to appropriate db path
     c = conn.cursor()
     c.execute('DELETE FROM areas WHERE name = ?', [name])
     conn.commit()

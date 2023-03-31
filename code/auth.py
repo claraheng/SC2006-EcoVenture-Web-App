@@ -1,7 +1,9 @@
 from flask import Flask,Blueprint, render_template, request, redirect, url_for, flash,session
 from flask_login import LoginManager, login_user, logout_user, login_required
 from user import User, find_by_username
+from models import usersdb
 import sqlite3
+
 
 
 
@@ -9,10 +11,9 @@ auth_bp = Blueprint('auth', __name__)
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 
-
 @login_manager.user_loader
 def load_user(username):
-        connection=sqlite3.connect('DB/users.db')
+        connection=sqlite3.connect(usersdb)
         cursor=connection.cursor()
         cursor.execute('SELECT * FROM users WHERE username=?',(username,))
         user_data=cursor.fetchone()

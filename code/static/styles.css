@@ -56,6 +56,7 @@ body{
     -webkit-border-radius: 11;
     -moz-border-radius: 11;
     border-radius: 11px;
+    border-style: none;
     color: #EDF1D6;
     font-size: 2rem;
     background: #609966;
@@ -249,7 +250,7 @@ margin: auto 10%;
     text-align: center;
     font-size: 1.5rem;
     font-weight: 400;
-    text-shadow:0px 0px 15px black;
+    text-shadow:0px 0px 3px black, 0px 0px 7px black, 0px 0px 7px black;
 }
 
 /* Home page sections*/
@@ -270,11 +271,11 @@ margin: auto 10%;
 }
 
 .feature-description{
-    color: #fff;
+    color: #EDF1D6;
     text-align: center;
     font-size: 1.5rem;
     font-weight: 400;
-    text-shadow:0px 0px 15px black;
+    text-shadow:0px 0px 15px black, 0px 0px 3px black;
 }
 
 /*CTA section*/
@@ -288,7 +289,7 @@ margin: auto 10%;
 }
 
 /*-----------User Home Page-----------*/
-.user-homepage{
+.user-homepage-header{
     background-image: url(../static/images/user-home-bg.jpg);
     background-size: cover;
 }
@@ -322,16 +323,26 @@ margin: auto 10%;
 }
 
 /*Menu Section*/
+.menu-section{
+    text-align: center;
+}
+
 .menu-item{
     text-align: center;
+    color:#609966;
     padding: 7rem;
+    padding-bottom: 0;
 }
 
 .menu-heading{
     font-family: 'Rubik', sans-serif;
-    font-size: 3rem;
+    font-size: 4rem;
     color: #609966;
+    text-align: center;
+    padding: 7rem;
+    padding-bottom: 0;
 }
+
 
 /*-----------Where Should I Go Page-----------*/
 /*WSIG Title Section*/

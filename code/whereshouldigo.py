@@ -125,7 +125,6 @@ def show_map(id):
     # Render a template that displays the location on a map
     travel = {
         'destination': f"{latitude},{longitude}",
-        'mode': 'DRIVING' # or 'WALKING', 'BICYCLING', 'TRANSIT'
     }
 
     return render_template('directions.html', travel=travel)

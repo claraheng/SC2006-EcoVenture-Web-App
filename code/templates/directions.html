@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Directions Request from Current Location</title>
@@ -18,11 +19,14 @@
 					var userLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 					var destination = '{{ travel.destination }}';
 
+					// Get selected travel mode
+					var travelMode = document.getElementById('travel-mode').value;
+
 					// Create request object
 					var request = {
-						origin: userLocation, // User location
-						destination: destination, // Your Destination location
-						travelMode: '{{ travel.mode }}' //DRIVING, BICYCLING, TRANSIT, WALKING
+						origin: userLocation,
+						destination: destination,
+						travelMode: travelMode
 					};
 
 					// Send request to Google Maps API
@@ -38,9 +42,25 @@
 				alert('Your browser does not support geolocation.');
 			}
 		}
+
+		document.addEventListener('DOMContentLoaded', function() {
+			document.getElementById('travel-mode').addEventListener('change', function() {
+				initMap();
+			});
+			initMap();
+		});
 	</script>
  </head>
-<body onload="initMap()"> 
+<body> 
+	<form>
+		<label for="travel-mode">Travel mode:</label>
+		<select id="travel-mode">
+		  <option value="DRIVING">Driving</option>
+		  <option value="BICYCLING">Bicycling</option>
+		  <option value="TRANSIT">Transit</option>
+		  <option value="WALKING">Walking</option>
+		</select>
+	</form>
 	<div id="map" style="height: 500px; width: 100%;"></div>
  </body>
-</html> 
+</html>

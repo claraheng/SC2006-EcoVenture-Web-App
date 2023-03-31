@@ -29,13 +29,13 @@
     <!--Stylesheet-->
     <link rel="stylesheet" href="../static/styles.css" />
 
-    <!--Favicon-->
+    <!--FontAwesome-->
     <script src="https://kit.fontawesome.com/7d3131a49e.js" crossorigin="anonymous"></script>
  
     <title>Home</title>
   </head>
   <body>
-    <nav class="navbar navbar-inverse">
+    <!-- <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -58,8 +58,24 @@
                 </ul>
             </div>
         </div>
-    </nav>
-    <h1>Home</h1>
-    <p>This is your home page, {{ username }}!</p>
-  </body>
+    </nav> -->
+<div class="user-homepage">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="/#">EcoVenture</a>
+
+      <ul class="navbar-nav ms-auto"> 
+
+      <li class="nav-item">
+          <a class="nav-link" href="/showPoints"><i class="fa-solid fa-sparkles"></i> My Points</a>
+      </li>
+    </ul> 
+  </nav>
+
+  <div class="container homepage-title-section">
+    <h1 class="user-homepage-title">Welcome back, {{username}}!</h1>
+    <p class="user-homepage-description">How can we help you today?</p>
+</div> 
+    
+  </div>
+</body>
 </html>

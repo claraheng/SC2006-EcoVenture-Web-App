@@ -229,7 +229,7 @@ margin: auto 10%;
 
 /*-----------Home Page-----------*/
 .homepage{
-    background-image: url(../static/images/home-bg.jpeg);
+    background-image: url(../static/images/home-bg.jpg);
     background-size: cover;
 }
 
@@ -241,6 +241,15 @@ margin: auto 10%;
     color:#EDF1D6;
     text-align: center;
     font-size: 6rem;
+    text-shadow:2px 2px 20px black;
+}
+
+.homepage-description{
+    color: #fff;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-shadow:0px 0px 15px black;
 }
 
 /* Home page sections*/
@@ -251,12 +260,21 @@ margin: auto 10%;
 
 .feature-title{
     margin: 1rem 0;
+    text-shadow:0px 0px 15px black;
 }
 
 .feature-img{
     margin: 1% 3%;
     height: 25rem;
     width: auto;
+}
+
+.feature-description{
+    color: #fff;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-shadow:0px 0px 15px black;
 }
 
 /*CTA section*/
@@ -270,6 +288,23 @@ margin: auto 10%;
 }
 
 /*-----------User Home Page-----------*/
+.user-homepage{
+    background-image: url(../static/images/user-home-bg.jpg);
+    background-size: cover;
+}
+
+.user-homepage-title{
+    color: #fff;
+    text-align: center;
+    font-size: 6rem;
+}
+
+.user-homepage-description{
+    color: #EDF1D6;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
 /*Title Section*/
 .title-section{
     background-image: url("../src/images/leaves-bg.jpg"); /*idk why this dont work but ohwells*/

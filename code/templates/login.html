@@ -36,12 +36,14 @@
       src="https://kit.fontawesome.com/7d3131a49e.js"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      {% if error %}
+          alert("{{ error }}");
+      {% endif %}
+  </script>
   </head>
   <body>
-    {% if error %}
-    <p>{{ error }}</p>
-    {% endif %}
-
     <div class="row">
       <div class="col-lg-7 container-half-screen login-img-container">
         <h1 class="brand">EcoVenture</h1>

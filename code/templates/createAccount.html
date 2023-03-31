@@ -35,6 +35,13 @@
       src="https://kit.fontawesome.com/7d3131a49e.js"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      {% if error %}
+          alert("{{ error }}");
+      {% endif %}
+  </script>
+
   </head>
   <body>
 
@@ -46,38 +53,30 @@
       <div class="col-lg-5 container container-half-screen">
         <div class="input-div">
           <h1 class="login-page-title">Create your EcoVenture account:</h1>
-          {% if error %}
-          <p style="color:red">{{ error }}</p>
-          {% endif %}
 
-<form action="{{ url_for('createAccountView') }}" method="POST">
-      <div class="input-box">
-        <label class="input-labels" for="username">Username:</label>
-        <input class="input-field" type="text" id="username" name="username" placeholder="Enter a username" required>
-      </div>
-      <div class="input-box">
-        <label class="input-labels" for="email">Email:</label>
-        <input class="input-field" type="text" id="email" name="email" placeholder="Enter a email" required>
-      </div>
-      
-      <div class="input-box">
-        <label class="input-labels" for="password1">Password:</label>
-        <input class="input-field" type="password" id="password1" name="password1" placeholder="Enter a password" required>
-      </div>
+          <form action="{{ url_for('createAccountView') }}" method="POST">
+              <div class="input-box">
+                <label class="input-labels" for="username">Username:</label>
+                <input class="input-field" type="text" id="username" name="username" placeholder="Enter a username" required>
+              </div>
+              <div class="input-box">
+                <label class="input-labels" for="email">Email:</label>
+                <input class="input-field" type="text" id="email" name="email" placeholder="Enter an email" required>
+              </div>
 
-      <div class="input-box">
-        <label class="input-labels" for="password2">Confirm Password:</label>
-        <input class="input-field" type="password" id="password2" name="password2" placeholder="Confirm your password"required>
-      </div>
+              <div class="input-box">
+                <label class="input-labels" for="password1">Password:</label>
+                <input class="input-field" type="password" id="password1" name="password1" placeholder="Enter a password" required>
+              </div>
 
-      <button class="submit-btn" type="submit">Create Account</button>
-    </form>
-      <p style="color:grey">Already have an account? <a href="/login">Log in.</a></p>
-        </div>
-      </div>  
-    </div>
+              <div class="input-box">
+                <label class="input-labels" for="password2">Confirm Password:</label>
+                <input class="input-field" type="password" id="password2" name="password2" placeholder="Confirm your password"required>
+              </div>
 
-    
-    
-  </body>
-</html>
+              <button class="submit-btn" type="submit">Create Account
+                <p style="color:grey">Already have an account? <a href="/login">Log in.</a></p>
+              </div>
+            </div>  
+          </div>
+          

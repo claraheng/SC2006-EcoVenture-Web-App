@@ -5,6 +5,7 @@ from auth import auth_bp, login_manager
 from fitnessareas import areas_bp
 from whereshouldigo import WhereShouldIGo_bp
 from checkin import checkin_bp
+from password_strength import PasswordPolicy 
 import sqlite3
 from models import app, areasdb
 #from flask_cors import CORS # frontend
@@ -61,17 +62,30 @@ def createAccountView():
         password2 = request.form['password2']
         points = 0
         
+        #check if passwords match 
         if password1 != password2:
             error = 'Passwords do not match'
-            return jsonify({'message': 'Passwords do not match'}), 401
+            return render_template('createAccount.html',error=error)
+        
+        #check password strength , disabled for testing purposes 
+        policy = PasswordPolicy.from_names(
+            length=0,  # Minimum length of 8 characters
+            uppercase=0,  # Requires at least 1 uppercase letter
+            numbers=0,  # Requires at least 1 number
+            special=0,  # Requires at least 1 special character
+        )
+        
+        if policy.test(password1):
+            error = 'Password does not meet strength requirements'
+            return render_template('createAccount.html',error=error)
 
         try:
             createAccount(username, email,  password1, points)
-            print("sign up successful")
-            return {'message': 'success'}
+            error = "sign up successful!"
+            return render_template('login.html',error = error )
         except ValueError as e:
             error = str(e)
-            return jsonify({'message': 'Error!'}), 401
+            return render_template('createAccount.html',error=error)
 
     else:
         error= None

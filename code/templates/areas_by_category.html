@@ -8,7 +8,7 @@
     <title>Areas by Category</title>
   </head>
   <body>
-    <h1>Areas with Category: {{ category }}</h1>
+    <h1>Areas</h1>
     <table class="table table-hover table-dark">
         <thead>
             <tr>
@@ -27,7 +27,7 @@
                     <td>{{ area.name }}</td>
                     <td>{{ area.description }}</td>
                     <td>{{ area.weather }}</td> 
-                    <td>{{ area.distance_km }}</td> 
+                    <td>{{ '%.2f' % area.distance_km }} km</td> 
                     <td><a href="/map/{{ area.id }}">View on Map</a></td> 
                 </tr>
             {% endfor %}

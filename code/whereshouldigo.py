@@ -39,11 +39,27 @@ def search():
 @app.route('/results')
 def results():
     query = request.args.get('query')
-    conn = sqlite3.connect('areas.db')
+    conn = sqlite3.connect('DB/areas.db')
     c = conn.cursor()
     c.execute("SELECT * FROM areas WHERE name LIKE ?", ('%' + query + '%',))
     results = c.fetchall()
     conn.close()
+
+     # Get user's current location
+    location = get_user_location()
+    
+    # Calculate distance to each area in results
+    for i, result in enumerate(results):
+        lat, lng = result[2], result[3]
+        area_location = (lat, lng)
+        distance = calculate_distance(location, area_location)
+        results[i] = result + (distance,)
+        
+        # Get weather conditions for this area
+        region = getRegion(lat, lng)
+        weather = getForecast(region)
+        results[i] = results[i] + (weather,)
+
     return render_template('results.html', query=query, results=results)
 
 #@WhereShouldIGo_bp.route('/route1', methods=['POST'])

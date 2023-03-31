@@ -36,7 +36,7 @@
   </head>
   <body>
 
-<section class="colored-section">
+<section class="colored-section wsig-title-section">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="/#">EcoVenture</a>
 
@@ -59,19 +59,20 @@
    
     </nav>
     <div class="title-section">
-    <h1 class="title">Where Should {{ session.username }} Go Today?</h1>
+    <h1 class="wsig-title">Where Should {{ session.username }} Go?</h1>
     <h3 class="description">Embark on your next adventure at one of our Fitness Areas today.</h3>
-
 </div>
-</section class="light-section">
+</section>
+
+<section class="colored-section">
 <div class="row" id="wsig-menu-section">
 
     <div class="card-column col-lg-4">
      <div class="card">
         <form method="POST" action="/route1">
             <input type="hidden" name="item_id" value="{{items[0].id}}">
-                <h1 class="card-title" >{{ items[0].category }}</h1>
                 <img class="card-img" src="../static/images/nr-img.jpeg">
+                <h1 class="card-title" >{{ items[0].category }}</h1>
                 <p class="card-description">{{ items[0].description }}</p>
                     <button class="btn-big" type="submit" name="submit_button" value="button1">Choose</button>
         </form>
@@ -82,8 +83,9 @@
         <div class="card">
            <form method="POST" action="/route1">
                <input type="hidden" name="item_id" value="{{items[1].id}}">
-                   <h1 class="card-title" >{{ items[1].category }}</h1>
                    <img class="card-img" src="../static/images/parks-img.jpeg">
+                   <h1 class="card-title" >{{ items[1].category }}</h1>
+                   
                    <p class="card-description">{{ items[1].description }}</p>
                        <button class="btn-big" type="submit" name="submit_button" value="button2">Choose</button>
            </form>
@@ -94,8 +96,9 @@
         <div class="card">
            <form method="POST" action="/route1">
                <input type="hidden" name="item_id" value="{{items[2].id}}">
-                   <h1 class="card-title" >{{ items[2].category }}</h1>
                    <img class="card-img" src="../static/images/wr-img.jpeg">
+                   <h1 class="card-title" >{{ items[2].category }}</h1>
+                   
                    <p class="card-description">{{ items[2].description }}</p>
               
                        <button class="btn-big" type="submit" name="submit_button" value="button3">Choose</button>
@@ -103,7 +106,7 @@
            </form>
         </div>
        </div>
-
+</section>
 
   </div>
 

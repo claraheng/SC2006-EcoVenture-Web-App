@@ -33,6 +33,7 @@ body{
     background-color: #EDF1D6;
 }
 
+
 /*-----------GENERAL CONTAINERS-----------*/
 .container-half-screen{
     height:100vh;
@@ -162,7 +163,7 @@ text-align: center;
         margin: 2% auto;
     }
 
-/*-----------Login Page-----------*/
+/*-----------Login Page/Create an Account Page-----------*/
 .login-img-container{
   background-image: url("../static/images/login-img.jpeg");
   background-size: cover;
@@ -268,7 +269,7 @@ margin: auto 10%;
     margin: 1% 7%;
 }
 
-
+/*-----------User Home Page-----------*/
 /*Title Section*/
 .title-section{
     background-image: url("../src/images/leaves-bg.jpg"); /*idk why this dont work but ohwells*/
@@ -296,7 +297,22 @@ margin: auto 10%;
     font-size: 3rem;
     color: #609966;
 }
- 
+
+/*-----------Where Should I Go Page-----------*/
+/*WSIG Title Section*/
+.wsig-title-section{
+    background-image: url(../static/images/home-bg.jpeg);
+    background-size: cover;
+    text-align: center;
+}
+
+.wsig-title{
+    font-family: 'Pacifico', sans-serif;
+    color: white;
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
 /*WSIG Menu Section*/
 #wsig-menu-section{
     padding: 10px 15px;
@@ -312,22 +328,32 @@ margin: auto 10%;
     text-align: center;
 }
 
+/*
+.card:hover{
+    background-color:#609966;
+}
+*/
+
 .card-title{
-    font-family: 'Itim', cursive;
+    font-family: 'Rubik', cursive;
     color:#40513B;
     text-align: center;
-    font-size: 4rem;
+    font-size: 3.5rem;
+    margin: 1rem auto;
+    font-weight: 400;
 }
 
 .card-description{
-    margin: 2rem;
-    color:#609966;
-    font-weight: 400;
+    margin: 0 2rem;
+    color:#40513B;
+    font-weight: 300;
     text-align: center;
     font-size: 2.3rem;
+    min-height: 14rem;
 }
 
 .card-img{
-    height: 10rem;
-    width: 20rem;
+    height: 15rem;
+    width: 30rem;
+    margin: 1rem auto;
 }

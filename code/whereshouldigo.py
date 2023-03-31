@@ -32,10 +32,6 @@ def whereshouldigo():
     ]
     return render_template("whereshouldigo.html", items=items)
 
-@app.route('/search')
-def search():
-    return render_template('search.html')
-
 @app.route('/results')
 def results():
     query = request.args.get('query')

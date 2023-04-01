@@ -28,6 +28,7 @@
      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
      crossorigin="anonymous"
    ></script>
+
  <!--Stylesheet-->
    <link rel="stylesheet" href="../static/styles.css" />
    <!--Favicon-->
@@ -36,7 +37,7 @@
   </head>
   <body>
 
-<section class="colored-section wsig-title-section">
+<section class="wsig-title-section">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="/#">EcoVenture</a>
 
@@ -58,66 +59,85 @@
         
    
     </nav>
-    <div class="title-section">
+
+    <div>
     <h1 class="wsig-title">Where Should {{ session.username }} Go?</h1>
-    <h3 class="description">Embark on your next adventure at one of our Fitness Areas today.</h3>
-</div>
-</section>
-
-<section class="colored-section">
-  <div class="container">
-    <form action="{{ url_for('results') }}" method="GET">
-      <input type="text" name="query" placeholder="Search...">
-      <input type="submit" value="Search">
-    </form>
-  </div>
-</section>
-
-<section class="colored-section">
-<div class="row" id="wsig-menu-section">
-
-    <div class="card-column col-lg-4">
-     <div class="card">
-        <form method="POST" action="/route1">
-            <input type="hidden" name="item_id" value="{{items[0].id}}">
-                <img class="card-img" src="../static/images/nr-img.jpeg">
-                <h1 class="card-title" >{{ items[0].category }}</h1>
-                <p class="card-description">{{ items[0].description }}</p>
-                    <button class="btn-big" type="submit" name="submit_button" value="button1">Choose</button>
-        </form>
-        </div>
+    <h3 class="wsig-description">Embark on your next adventure at one of our Fitness Areas today.</h3>
     </div>
-
-    <div class="card-column col-lg-4">
-        <div class="card">
-           <form method="POST" action="/route1">
-               <input type="hidden" name="item_id" value="{{items[1].id}}">
-                   <img class="card-img" src="../static/images/parks-img.jpeg">
-                   <h1 class="card-title" >{{ items[1].category }}</h1>
-                   
-                   <p class="card-description">{{ items[1].description }}</p>
-                       <button class="btn-big" type="submit" name="submit_button" value="button2">Choose</button>
-           </form>
-           </div>
-       </div>
-
-       <div class="card-column col-lg-4">
-        <div class="card">
-           <form method="POST" action="/route1">
-               <input type="hidden" name="item_id" value="{{items[2].id}}">
-                   <img class="card-img" src="../static/images/wr-img.jpeg">
-                   <h1 class="card-title" >{{ items[2].category }}</h1>
-                   
-                   <p class="card-description">{{ items[2].description }}</p>
-              
-                       <button class="btn-big" type="submit" name="submit_button" value="button3">Choose</button>
-             
-           </form>
-        </div>
-       </div>
 </section>
 
-  </div>
 
-  
+<section class="colored-section">
+
+  <!--Search Bar-->
+  <section class="wsig-search-section">
+    <h2 class="wsig-feature-header">Know where to go?</h2>
+    <div class="container">
+      <form action="{{ url_for('results') }}" method="GET">
+        <div class="search-bar">
+          <i class="search-icon fa-solid fa-magnifying-glass"></i><input class="search-input" type="text" name="query" placeholder=" Search for a Fitness Area...">
+                <input class="search-btn" type="submit" value="Search">
+          </div>
+
+      </form>
+    </div>
+  </section>
+
+  <!--Categories-->
+  <h2 class="wsig-feature-header">Or choose from one of our categories.</h2>
+  <div class="row" id="wsig-menu-section">
+
+      <div class="card-column col-lg-4">
+      <div class="card">
+          <form method="POST" action="/route1">
+              <input type="hidden" name="item_id" value="{{items[0].id}}">
+                  <img class="card-img" src="../static/images/nr-img.jpeg">
+                  <h1 class="card-title" >{{ items[0].category }}</h1>
+                  <p class="card-description">{{ items[0].description }}</p>
+                      <button class="btn-big" type="submit" name="submit_button" value="button1">Choose</button>
+          </form>
+          </div>
+      </div>
+
+      <div class="card-column col-lg-4">
+          <div class="card">
+            <form method="POST" action="/route1">
+                <input type="hidden" name="item_id" value="{{items[1].id}}">
+                    <img class="card-img" src="../static/images/parks-img.jpeg">
+                    <h1 class="card-title" >{{ items[1].category }}</h1>
+                    
+                    <p class="card-description">{{ items[1].description }}</p>
+                        <button class="btn-big" type="submit" name="submit_button" value="button2">Choose</button>
+            </form>
+            </div>
+        </div>
+
+        <div class="card-column col-lg-4">
+          <div class="card">
+            <form method="POST" action="/route1">
+                <input type="hidden" name="item_id" value="{{items[2].id}}">
+                    <img class="card-img" src="../static/images/wr-img.jpeg">
+                    <h1 class="card-title" >{{ items[2].category }}</h1>
+                    
+                    <p class="card-description">{{ items[2].description }}</p>
+                
+                        <button class="btn-big" type="submit" name="submit_button" value="button3">Choose</button>
+              
+            </form>
+          </div>
+        </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<!--Footer-->
+<footer class="light-section footer-section">
+            <p class="footer-description">© Copyright Ecoventure</p>
+</footer>
+
+</body>
 </html>

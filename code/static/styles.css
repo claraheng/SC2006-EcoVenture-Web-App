@@ -97,72 +97,84 @@ text-align: center;
     border-color: #609966;
     border-style: solid;
       background-color: rgba(237, 241, 214,1);
-      width: 70%;
+      width: 80%;
       outline: 0px;
       outline-color: transparent;
       border-radius: 19px;
       padding: 10px 15px;
-      margin: 0 auto 10px auto;
-      display: block;
-      margin: 20px auto;
+      margin: 0 auto;
+  display: block;
     }
     
-    .search-icon{
-        color: #609966;
-    }
-    .search-input{
-        color: #609966;
-        border: none;
-        outline: 0px;
-        text-align: left;
-      font-family: 'Rubik',cursive;
-      font-size: 20px;
-      font-weight: 300;
-      height: 100%;
-      width: 92%;
-      background-color: transparent;
-    }
-    
-    .search-input::placeholder{
-        color: #609966;
-        opacity: 0.4;
-    }
-    
-    /* Navigation Bar */
-    .navbar{
-        padding-bottom: 0.5rem;
-    }
-    
-    .navbar-brand{
-        font-family: 'Pacifico', sans-serif;
-        font-size: 2.5rem;
-        margin-left: 1.5rem;
-    }
-    
-    .nav-item{
-        padding: 0 18px;
-        font-weight: 400;
-    }
-    
-    .nav-link{
-        font-size: 1.2rem;
-    }
-    
-    .nav-link:hover{
-        color:white;
-    }
+.search-icon{
+    color: #609966;
+}
 
-    /*Footer*/
-    .footer-section{
-        padding: 0.5rem 0;
-    }
+.search-input{
+    color: #609966;
+    border: none;
+    outline: 0px;
+    text-align: left;
+    font-family: 'Rubik',cursive;
+    font-size: 1.5rem;
+    font-weight: 300;
+    height: 100%;
+    width: 85%;
+    background-color: transparent;
+}
 
-    .footer-description{
-        color: grey;
-        size: 1rem;
-        text-align: center;
-        margin: 2% auto;
-    }
+.search-input::placeholder{
+    color: #609966;
+    opacity: 0.4;
+}
+
+.search-btn{
+    color: #EDF1D6;
+    font-size: 17px;
+    background: #609966;
+    text-decoration: none;
+    outline: 0px;
+    width: 10%;
+    border-radius: 11px;
+    border: solid;
+    padding: 0.5rem 0;
+}
+
+/* Navigation Bar */
+.navbar{
+    padding-bottom: 0.5rem;
+}
+
+.navbar-brand{
+    font-family: 'Pacifico', sans-serif;
+    font-size: 2.5rem;
+    margin-left: 1.5rem;
+}
+
+.nav-item{
+    padding: 0 18px;
+    font-weight: 400;
+}
+
+.nav-link{
+    font-size: 1.2rem;
+}
+
+.nav-link:hover{
+    color:white;
+}
+
+/*Footer*/
+.footer-section{
+    padding: 0.5rem 0;
+}
+
+.footer-description{
+    color: grey;
+    size: 1rem;
+    text-align: center;
+    margin: 2% auto;
+}
 
 /*-----------Login Page/Create an Account Page-----------*/
 .login-img-container{
@@ -345,27 +357,44 @@ margin: auto 10%;
 
 
 /*-----------Where Should I Go Page-----------*/
+.wsig-feature-header{
+    text-align: center;
+    margin: 0 auto;
+    font-size: 4.5rem;
+}
+
 /*WSIG Title Section*/
 .wsig-title-section{
-    background-image: url(../static/images/home-bg.jpeg);
+    background-image: url(../static/images/home-bg.jpg);
     background-size: cover;
     text-align: center;
+    padding: 0% 0% 5%;
 }
 
 .wsig-title{
     font-family: 'Pacifico', sans-serif;
     color: white;
     font-size: 5rem;
-    margin-bottom: 1rem;
+    margin: 3% 3% 1rem;
+}
+
+.wsig-description{
+    text-align: center;
+    margin: 0 auto;
+}
+
+/*WSIG Search Section*/
+.wsig-search-section{
+    padding: 2.3rem;
 }
 
 /*WSIG Menu Section*/
 #wsig-menu-section{
-    padding: 10px 15px;
+    padding: 3px 15px;
 }
 
 .card-column{
-    padding: 1rem 1rem;
+    padding: 0.5rem 3rem 3rem;
 }
 
 .card{
@@ -385,7 +414,7 @@ margin: auto 10%;
     color:#40513B;
     text-align: center;
     font-size: 3.5rem;
-    margin: 1rem auto;
+    margin: 0.5rem auto;
     font-weight: 400;
 }
 

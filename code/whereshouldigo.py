@@ -120,7 +120,7 @@ def show_map(id):
     c = conn.cursor()
 
     # Execute a SELECT statement to retrieve the latitude and longitude values for the specified id
-    c.execute('SELECT latitude, longitude FROM areas WHERE id=?', (id,))
+    c.execute('SELECT latitude, longitude, name FROM areas WHERE id=?', (id,))
 
     # Fetch the first row as a tuple
     row = c.fetchone()
@@ -134,11 +134,12 @@ def show_map(id):
         return 'Area not found', 404
 
     # Extract the latitude and longitude values from the row
-    latitude, longitude = row
+    latitude, longitude, name = row
 
     # Render a template that displays the location on a map
     travel = {
         'destination': f"{latitude},{longitude}",
+        'name': f"{name}"
     }
 
     return render_template('directions.html', travel=travel)

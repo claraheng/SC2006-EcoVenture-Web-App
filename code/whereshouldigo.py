@@ -55,6 +55,9 @@ def results():
         weather = getForecast(region)
         results[i] = results[i] + (weather,)
 
+    # Sort results by distance in ascending order
+    results = sorted(results, key=lambda x: x[-2])
+
     return render_template('results.html', query=query, results=results)
 
 #@WhereShouldIGo_bp.route('/route1', methods=['POST'])
@@ -65,11 +68,11 @@ def route1():
         item_id = request.form['item_id']
         button_value = request.form['submit_button']
         if button_value == 'button1':
-            return redirect(url_for('get_areas_by_category', category='Nature Reserve'))
+            return redirect(url_for('get_areas_by_category', category='Nature Reserves'))
         elif button_value == 'button2':
-            return redirect(url_for('get_areas_by_category', category='Park'))
+            return redirect(url_for('get_areas_by_category', category='Parks'))
         elif button_value == item_id + 'button3':
-            return redirect(url_for('get_areas_by_category', category='Wildlife Reserve'))
+            return redirect(url_for('get_areas_by_category', category='Wildlife Reserves'))
     # Render the template with the form
     return render_template('whereshouldigo.html')
 
@@ -102,10 +105,10 @@ def get_areas_by_category(category):
         area_dict['weather'] = weather
         results[i] = area_dict
 
-        # Sort results by distance in ascending order
+    # Sort results by distance in ascending order
     results = sorted(results, key=lambda x: x['distance_km'])
     
-    return render_template('areas_by_category.html', results=results)
+    return render_template('areas_by_category.html', results=results, category=category)
 
 #@WhereShouldIGo_bp.route('/map/<int:id>')
 @app.route('/map/<int:id>')

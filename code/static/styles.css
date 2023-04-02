@@ -69,6 +69,8 @@ body{
 .btn-big:hover {
     background: #40513B;
     text-decoration: none;
+    border-style: solid;
+    border-color:#EDF1D6;
 }
 
 .submit-btn{
@@ -394,7 +396,7 @@ margin: auto 10%;
 }
 
 .card-column{
-    padding: 0.5rem 3rem 3rem;
+    padding: 0.5rem 2rem 3rem;
 }
 
 .card{
@@ -424,11 +426,102 @@ margin: auto 10%;
     font-weight: 300;
     text-align: center;
     font-size: 2.3rem;
-    min-height: 14rem;
+    min-height: 20rem;
 }
 
 .card-img{
-    height: 15rem;
-    width: 30rem;
+    height: 10rem;
+    width: 20rem;
     margin: 1rem auto;
 }
+
+/*-----------Results Page-----------*/
+.results-page-title{
+    text-align: center;
+    font-size: 5rem;
+    color: #40513B;
+    margin: 1rem;
+}
+
+.results-search-section{
+    text-align: left;
+    margin-bottom: 0.8rem;
+}
+
+.results-page-description{
+    font-size: 2rem;
+    color:#40513B;
+    margin-left: 1.5rem;
+}
+
+/*Results Cards*/
+.fa-card-section{
+    padding: 0.5rem;
+}
+
+.fa-card-column{
+    padding: 1rem 1.5rem;
+}
+
+.fa-card{
+    padding: 1rem;
+    background-color:#40513B;
+    text-align: center;
+}
+
+.fa-card-title{
+    font-family: 'Rubik', cursive;
+    color:#EDF1D6;
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 0.5rem auto;
+    font-weight: 400;
+}
+
+.fa-card-description{
+    font-family: 'Rubik', cursive;
+    color:#fff;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 0.5rem 1rem;
+    font-weight: 300;
+}
+
+.fa-card-prop-title{
+    font-family: 'Rubik', cursive;
+    color:#EDF1D6;
+    text-align: left;
+    font-size: 1.5rem;
+    margin: 0.5rem 1rem;
+    font-weight: 400;
+}
+
+.fa-card-words{
+    font-family: 'Rubik', cursive;
+    color:#fff;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 0.5rem 1rem;
+    font-weight: 300;
+}
+
+.fa-card-details{
+    text-align: center;
+    margin: 0 auto;
+}
+
+.fa-card-weather{
+    border-radius: 20px;
+    border-style: solid;
+    border-color:white;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+.fa-card-btn{
+    text-align: center;
+}
+

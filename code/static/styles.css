@@ -56,7 +56,8 @@ body{
     -webkit-border-radius: 11;
     -moz-border-radius: 11;
     border-radius: 11px;
-    border-style: none;
+    border-style: solid;
+    border-color: #609966;
     color: #EDF1D6;
     font-size: 2rem;
     background: #609966;
@@ -322,8 +323,7 @@ margin: auto 10%;
 
 /*Title Section*/
 .title-section{
-    background-image: url("../src/images/leaves-bg.jpg"); /*idk why this dont work but ohwells*/
-    padding:3% 3% 5%;
+    padding:3% 0% 5%;
 }
 
 .title{
@@ -403,6 +403,7 @@ margin: auto 10%;
     padding: 5px;
     background-color:#EDF1D6;
     text-align: center;
+    width: 100%;
 }
 
 /*
@@ -435,7 +436,7 @@ margin: auto 10%;
     margin: 1rem auto;
 }
 
-/*-----------Results Page-----------*/
+/*-----------Search Results Page-----------*/
 .results-page-title{
     text-align: center;
     font-size: 5rem;
@@ -508,9 +509,10 @@ margin: auto 10%;
 .fa-card-details{
     text-align: center;
     margin: 0 auto;
+    width: 100%;
 }
 
-.fa-card-weather{
+.fa-card-details-data{
     border-radius: 20px;
     border-style: solid;
     border-color:white;
@@ -519,9 +521,25 @@ margin: auto 10%;
     font-weight: 300;
     padding: 1rem;
     margin: 0 auto;
+    width: 55%;
+}
+.fa-card-btn-link{
+    width: 80%;
 }
 
 .fa-card-btn{
     text-align: center;
+    width: 85%;
 }
 
+
+/*-----------Results Page-----------*/
+.abc-title-section{
+    background: url("../static/images/user-home-bg.jpg");
+    background-size: cover;
+}
+
+.abc-title{
+    text-align: center;
+    padding: 2rem 0;
+}

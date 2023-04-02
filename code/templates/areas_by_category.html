@@ -2,36 +2,89 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Areas by Category</title>
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/x-icon" href="../../static/images/favicon.ico"/>
+
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Itim&family=Pacifico&family=Rubik:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--Bootstrap-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="../../static/styles.css" />
+
+    <!--Favicon-->
+    <script
+      src="https://kit.fontawesome.com/7d3131a49e.js"
+      crossorigin="anonymous"
+    ></script>
+  
   </head>
   <body>
-    <h1>Areas</h1>
-    <table class="table table-hover table-dark">
-        <thead>
-            <tr>
-                <!-- Your Columns HERE -->
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Weather</th>
-                <th scope="col">Distance</th> 
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Your rows inside the table HERE: -->
-            {% for area in results %}
-                <tr>
-                    <td>{{ area.name }}</td>
-                    <td>{{ area.description }}</td>
-                    <td>{{ area.weather }}</td> 
-                    <td>{{ '%.2f' % area.distance_km }} km</td> 
-                    <td><a href="/map/{{ area.id }}">View on Map</a></td> 
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <!--Title Section-->
+    <section class="abc-title-section">
+    <!--Navigation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/#">EcoVenture</a>
+        <ul class="navbar-nav ms-auto"> 
+        <li class="nav-item active">
+            <a class="nav-link" href="/user">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/check_in">Check in</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/whereshouldigo">Where Should I Go?</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/showPoints"><i class="fa-solid fa-star"></i> My Points</a>
+      </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+        </li>
+      </ul> 
+    </nav>
+
+    <h1 class="abc-title">The Best {{ category }}s.</h1>
+  </section>
+
+    <!--List of Fitness Areas-->
+    <div class="row fa-card-section">
+      {% for area in results %}
+      <div class=" d-flex align-items-stretch col-lg-4 fa-card-column">
+        <div class="d-flex align-items-end flex-column card fa-card ">
+          <h2 class="card-title fa-card-title">{{ area.name }}</h2>
+          <p class="fa-card-description">{{ area.description }}</p>
+          <div class="mt-auto fa-card-details">
+             <p class="fa-card-prop-title">Weather Condition: <p class="fa-card-details-data">{{ area.weather }}</p></p>
+          <p class="fa-card-prop-title">Distance from you: <p class="fa-card-details-data">{{ '%.2f' % area.distance_km }} km</p></p>
+          <a class="fa-card-btn-link" href="/map/{{ area.id }}"><button class="btn-big fa-card-btn">View Route</button></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!--Footer-->
+    <footer class="light-section footer-section">
+      <p class="footer-description">© Copyright Ecoventure</p>
+    </footer>
   </body>
 </html>

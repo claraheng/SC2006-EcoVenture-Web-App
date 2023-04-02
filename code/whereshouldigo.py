@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, g, jsonify, url_for  , Blueprint
+from flask import render_template, request, redirect, g, jsonify, url_for  , Blueprint, current_app
 from flask_login import login_required
 import sqlite3
 from weather import getRegion, getForecast
@@ -6,13 +6,12 @@ from checkin import get_user_location, calculate_distance
 from models import app
 
 WhereShouldIGo_bp = Blueprint('WhereShouldIGo', __name__)
-app.config['DATABASE'] = 'DB/areas.db'
 
 def get_db():
     db = getattr(g, '_database', None)
     print("TEST")
     if db is None:
-        db = g._database = sqlite3.connect(app.config['DATABASE'])
+        db = g._database = sqlite3.connect(current_app.config['AREASDBPATH'])
         db.row_factory = sqlite3.Row
     return db
 
@@ -35,7 +34,7 @@ def whereshouldigo():
 @app.route('/results')
 def results():
     query = request.args.get('query')
-    conn = sqlite3.connect('DB/areas.db')
+    conn = sqlite3.connect(current_app.config['AREASDBPATH'])
     c = conn.cursor()
     c.execute("SELECT * FROM areas WHERE name LIKE ?", ('%' + query + '%',))
     results = c.fetchall()
@@ -56,6 +55,9 @@ def results():
         weather = getForecast(region)
         results[i] = results[i] + (weather,)
 
+    # Sort results by distance in ascending order
+    results = sorted(results, key=lambda x: x[-2])
+
     return render_template('results.html', query=query, results=results)
 
 #@WhereShouldIGo_bp.route('/route1', methods=['POST'])
@@ -66,11 +68,11 @@ def route1():
         item_id = request.form['item_id']
         button_value = request.form['submit_button']
         if button_value == 'button1':
-            return redirect(url_for('get_areas_by_category', category='Nature Reserve'))
+            return redirect(url_for('get_areas_by_category', category='Nature Reserves'))
         elif button_value == 'button2':
-            return redirect(url_for('get_areas_by_category', category='Park'))
+            return redirect(url_for('get_areas_by_category', category='Parks'))
         elif button_value == item_id + 'button3':
-            return redirect(url_for('get_areas_by_category', category='Wildlife Reserve'))
+            return redirect(url_for('get_areas_by_category', category='Wildlife Reserves'))
     # Render the template with the form
     return render_template('whereshouldigo.html')
 
@@ -103,16 +105,16 @@ def get_areas_by_category(category):
         area_dict['weather'] = weather
         results[i] = area_dict
 
-        # Sort results by distance in ascending order
+    # Sort results by distance in ascending order
     results = sorted(results, key=lambda x: x['distance_km'])
     
-    return render_template('areas_by_category.html', results=results)
+    return render_template('areas_by_category.html', results=results, category=category)
 
 #@WhereShouldIGo_bp.route('/map/<int:id>')
 @app.route('/map/<int:id>')
 def show_map(id):
     # Connect to the database
-    conn = sqlite3.connect('DB/areas.db')
+    conn = sqlite3.connect(current_app.config['AREASDBPATH'])
 
     # Create a cursor object
     c = conn.cursor()

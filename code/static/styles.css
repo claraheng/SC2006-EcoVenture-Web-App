@@ -33,6 +33,10 @@ body{
     background-color: #EDF1D6;
 }
 
+.green-section{
+    background-color: #609966;
+}
+
 
 /*-----------GENERAL CONTAINERS-----------*/
 .container-half-screen{
@@ -118,7 +122,7 @@ text-align: center;
     border: none;
     outline: 0px;
     text-align: left;
-    font-family: 'Rubik',cursive;
+    font-family: 'Rubik',san-serif;
     font-size: 1.5rem;
     font-weight: 300;
     height: 100%;
@@ -166,6 +170,24 @@ text-align: center;
 .nav-link:hover{
     color:white;
 }
+
+/*Dropdown Menu*/
+.form-select{
+    color:#40513B;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.3rem;
+    border-color: #40513B;
+    border-width: 2px;
+    border-radius: 20px;
+    background-color: transparent;
+    width: 20%;
+    display: inline-block;
+    margin-left: 0rem;
+    height: 2.1rem;
+    padding: 0;
+    padding-left: 1rem;
+}
+
 
 /*Footer*/
 .footer-section{
@@ -542,4 +564,35 @@ margin: auto 10%;
 .abc-title{
     text-align: center;
     padding: 2rem 0;
+}
+
+/*-----------Route Planning Page-----------*/
+.rp-title-section{
+    background-color: #40513B;
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+
+.rp-title{
+    padding: 0;
+}
+
+.rp-description-section{
+    padding: 0;
+}
+
+.rp-description{
+    font-size: 1.5rem;
+    color:#40513B;
+    font-weight: 400;
+    padding: 1rem;
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+#map{
+    border-color: #40513B;
+    border-width: 5px;
+    border-style: solid;
+    margin: 0;
 }

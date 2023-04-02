@@ -1,13 +1,13 @@
 #create areas for fitnessarea 
-from flask import Flask, g, request, jsonify
+from flask import Flask, g, request, jsonify, current_app
 import sqlite3
-from models import app, areasdb 
 from weather import *
+from models import app
 
 temperature=getTemperature()
 
 def connect_db():
-    sql = sqlite3.connect(areasdb)
+    sql = sqlite3.connect(current_app.config['AREASDBPATH'])
     sql.row_factory = sqlite3.Row
     return sql
 

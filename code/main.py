@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, session, url_for,flash, Flask 
+from flask import render_template, request, redirect, session, url_for,flash, Flask, current_app
 from flask_login import login_required
 from user import createAccount
 from auth import auth_bp, login_manager
@@ -7,7 +7,7 @@ from whereshouldigo import WhereShouldIGo_bp
 from checkin import checkin_bp
 from password_strength import PasswordPolicy 
 import sqlite3
-from models import app, areasdb
+from models import app
 #from flask_cors import CORS # frontend
 from flask import jsonify # frontend
 
@@ -112,7 +112,7 @@ def handle_click():
     points = data['points']
     category = data['category']
     description = data['description']
-    conn=sqlite3.connect(areasdb) #change to appropriate db path
+    conn=sqlite3.connect(current_app.config['AREASDBPATH']) #change to appropriate db path
     c = conn.cursor()
     c.execute('INSERT INTO areas (name, latitude, longitude, points, category, description) VALUES (?, ?, ?, ?, ?, ?)', (name, latitude, longitude, points, category, description))
     conn.commit()
@@ -126,7 +126,7 @@ def handle_edit():
     data = request.get_json()
     name = data['name']
     points = data['points']
-    conn=sqlite3.connect(areasdb) #change to appropriate db path
+    conn=sqlite3.connect(current_app.config['AREASDBPATH']) #change to appropriate db path
     c = conn.cursor()
     c.execute('UPDATE areas SET points = ? WHERE name = ?', [points, name])
     conn.commit()
@@ -139,7 +139,7 @@ def handle_edit():
 def handle_delete():
     data = request.get_json()
     name = data['name']
-    conn=sqlite3.connect(areasdb) #change to appropriate db path
+    conn=sqlite3.connect(current_app.config['AREASDBPATH']) #change to appropriate db path
     c = conn.cursor()
     c.execute('DELETE FROM areas WHERE name = ?', [name])
     conn.commit()

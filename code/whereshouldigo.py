@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, g, jsonify, url_for  , Blueprint
+from flask import render_template, request, redirect, g, jsonify, url_for  , Blueprint, current_app
 from flask_login import login_required
 import sqlite3
 from weather import getRegion, getForecast
@@ -6,13 +6,12 @@ from checkin import get_user_location, calculate_distance
 from models import app
 
 WhereShouldIGo_bp = Blueprint('WhereShouldIGo', __name__)
-app.config['DATABASE'] = 'DB/areas.db'
 
 def get_db():
     db = getattr(g, '_database', None)
     print("TEST")
     if db is None:
-        db = g._database = sqlite3.connect(app.config['DATABASE'])
+        db = g._database = sqlite3.connect(current_app.config['AREASDBPATH'])
         db.row_factory = sqlite3.Row
     return db
 
@@ -35,7 +34,7 @@ def whereshouldigo():
 @app.route('/results')
 def results():
     query = request.args.get('query')
-    conn = sqlite3.connect('DB/areas.db')
+    conn = sqlite3.connect(current_app.config['AREASDBPATH'])
     c = conn.cursor()
     c.execute("SELECT * FROM areas WHERE name LIKE ?", ('%' + query + '%',))
     results = c.fetchall()
@@ -112,7 +111,7 @@ def get_areas_by_category(category):
 @app.route('/map/<int:id>')
 def show_map(id):
     # Connect to the database
-    conn = sqlite3.connect('DB/areas.db')
+    conn = sqlite3.connect(current_app.config['AREASDBPATH'])
 
     # Create a cursor object
     c = conn.cursor()

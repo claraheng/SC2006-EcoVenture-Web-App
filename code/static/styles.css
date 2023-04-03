@@ -188,6 +188,13 @@ text-align: center;
     padding-left: 1rem;
 }
 
+/*Map*/
+#map{
+    border-color: #40513B;
+    border-width: 5px;
+    border-style: solid;
+    margin: 0;
+}
 
 /*Footer*/
 .footer-section{
@@ -568,7 +575,7 @@ margin: auto 10%;
 
 /*-----------Route Planning Page-----------*/
 .rp-title-section{
-    background-color: #40513B;
+    background-image: url(../static/images/user-home-bg.jpg);
     text-align: center;
     padding-bottom: 1.5rem;
 }
@@ -590,9 +597,55 @@ margin: auto 10%;
     padding-left: 1.5rem;
 }
 
-#map{
-    border-color: #40513B;
-    border-width: 5px;
-    border-style: solid;
+/*-----------Add Location (Admin) Page-----------*/
+.al-description{
+    padding: 1rem 1.5rem;
     margin: 0;
+    color:#40513B;
+}
+
+
+/*Adding location markers*/
+.al-marker-description{
+    color:#40513B;
+}
+
+.al-form{
+    background-color: #EDF1D6;
+    padding: 1rem;
+}
+
+.al-form-label{
+    color:#40513B;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.al-form-input{
+    color: #40513B;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 6px;
+    border-color:#40513B;
+    margin-left: 0.5rem;
+}
+
+.al-form-btn{
+    text-align: center;
+    -webkit-border-radius: 11;
+    -moz-border-radius: 11;
+    border-radius: 19px;
+    color: #EDF1D6;
+    font-size: 1rem;
+    background: #609966;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    outline: 0px;
+    margin: 1rem;
+    border-style:none;
+}
+
+.al-form-btn:hover {
+    background: #40513B;
+    text-decoration: none;
 }

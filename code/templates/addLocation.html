@@ -2,21 +2,61 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Add Fitness Location</title>
-    <body>
-      <h1> Admin page</h1> 
-      <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
-                </ul>
-            </div>
-        </div>
+
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon.ico"/>
+
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Itim&family=Pacifico&family=Rubik:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--Bootstrap-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="../static/styles.css" />
+
+    <!--FontAwesome-->
+    <script
+      src="https://kit.fontawesome.com/7d3131a49e.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+    <body style="color:#40513B;">
+
+      <!--Navigation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #40513B">
+      <a class="navbar-brand">Admin Page</a>
+      <ul class="navbar-nav ms-auto"> 
+      <li class="nav-item">
+          <a class="nav-link" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+      </li>
+    </ul> 
     </nav>
+
+    
+    <div class="row" style="padding: 0;">
+    <h3 class="col-lg-6 green-section al-description" style="color: #EDF1D6;">Click on any area of the map to add a Fitness Area .</h3>
+      <h3 class="col-lg-6 al-description">Click on an existing Fitness Area to edit/delete it.</h3>
+  </div>
     </body> 
     <style>
       #map {
@@ -55,13 +95,13 @@
               const editwindow = new google.maps.InfoWindow({
               content: `
                 <strong>${location.name}</strong><br>
-                <form>
-                  <label for="points-input">Points:</label>
-                  <input id="points-input" type="number" value="${location.points}">
+                <form class="al-form">
+                  <label class="al-form-label" for="points-input">Points:</label>
+                  <input class="al-form-input" id="points-input" type="number" value="${location.points}">
                   <br><br>
-                  <button id="edit-btn" type="submit">Edit</button>
+                  <button class="al-form-btn" id="edit-btn" type="submit">Edit</button>
                 </form>
-                <button id="delete-btn">Delete</button>
+                <button class="al-form-btn" id="delete-btn">Delete</button>
               `,
               });
               marker.addListener("mouseover", () => {
@@ -151,24 +191,24 @@
           infowindow.open(map, marker);
       
           var form =
-            '<form id="nameForm">' +
-            '<label for="nameInput">Fitness location name: </label>' +
-            '<input type="text" id="nameInput" name="nameInput">' +
+            '<form class="al-form" id="nameForm">' +
+            '<label class="al-form-label" for="nameInput">Fitness location name: </label>' +
+            '<input class="al-form-input" type="text" id="nameInput" name="nameInput">' +
             '<br/>' +
-            '<label for="pointsInput">Points: </label>' +
-            '<input type="number" id="pointsInput" name="pointsInput">' +
+            '<label class="al-form-label" for="pointsInput">Points:  </label>' +
+            '<input class="al-form-input" type="number" id="pointsInput" name="pointsInput">' +
             '<br/>' +
-            '<label for="categoryInput">Category: </label>' +
+            '<label class="al-form-label" for="categoryInput">Category: </label>' +
             '<select id="categoryInput" name="categoryInput">' +
             '<option value="Nature Reserves">Nature Reserves</option>' +
             '<option value="Parks">Parks</option>' +
             '<option value="Wildlife Reserves">Wildlife Reserves</option>' +
             '</select>' +
             '<br/>' +
-            '<label for="descriptionInput">Description: </label>' +
-            '<textarea id="descriptionInput" name="descriptionInput"></textarea>' +
+            '<label class="al-form-label" for="descriptionInput">Description: </label>' +
+            '<textarea class="al-form-input" id="descriptionInput" name="descriptionInput"></textarea>' +
             '<br/>' +
-            '<input type="button" id="submitButton" value="Submit">' +
+            '<input class="al-form-btn" type="button" id="submitButton" value="Submit">' +
             '</form>';
           infowindow.setContent(contentString + form);
       
@@ -212,8 +252,13 @@
       
     </script>
   </head>
-  <body onload="initMap()">
+  <body onload="initMap()" style="color: #40513B;">
     <div id="map">
     </div>
+
+      <!--Footer-->
+	<footer class="light-section footer-section">
+		<p class="footer-description">© Copyright Ecoventure</p>
+	</footer>
   </body>
 </html>

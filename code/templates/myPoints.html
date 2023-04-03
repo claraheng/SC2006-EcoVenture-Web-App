@@ -1,7 +1,7 @@
-<!DOCTYPE html>  <!-- integrate google maps api and location services to pin current location onto google maps-->
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Check In</title>
+    <title>My Points</title>
     <!--Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon.ico"/>
 
@@ -29,14 +29,6 @@
    <!--Favicon-->
    <script src="https://kit.fontawesome.com/7d3131a49e.js" crossorigin="anonymous"></script>
 
-   <!--Google Maps API-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHFCLcZvBCRrkFPKDLtMUq_ijnTQ1aRXE"></script>
-    <style>
-        #map {
-            height: 80vh;
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
     <section class="colored-section ci-title-section">
@@ -61,18 +53,17 @@
         </li>
       </ul> 
     </nav>
-    <h1 class="ci-title">Check In</h1>
+    <h1 class="ci-title">My Points</h1>
 </section>
 
     <div class="row">
-        <div class="col-lg-6">
-            <!--Map-->
-            <div id="map"></div>
+        <div class="col-lg-3">
+            <img src="../static/images/my-points-img.jpeg">
         </div>
         <!--RHS section-->
-        <div class="col-lg-6" style="text-align: center; padding: 3rem 2rem;">
-            <h3 class="ci-description">Checked in at [insert location]</h3>
-            <h4 class="ci-description" style="color: #609966">You now have [insert points] points!</h4>
+        <div class="col-lg-9" style="text-align: center; padding: 3rem 2rem;">
+            <h3 class="ci-description">Keep it going, [insert username]!</h3>
+            <h4 class="ci-description" style="color: #609966">You now have [insert points] points.</h4>
 
 
             <h3 class="ci-description" style="margin-top: 7%">Want more points?</h3>
@@ -84,29 +75,5 @@
 	<footer class="light-section footer-section">
 		<p class="footer-description">© Copyright Ecoventure</p>
 	</footer>
-
-    <script>
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12
-            });
-
-            // Get user's current location
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                    map.setCenter(userLatLng);
-
-                    // Add marker for user's location
-                    var marker = new google.maps.Marker({
-                        position: userLatLng,
-                        map: map,
-                        title: 'Your Location'
-                    });
-                });
-            }
-        }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHFCLcZvBCRrkFPKDLtMUq_ijnTQ1aRXE&callback=initMap"></script>
 </body>
 </html>

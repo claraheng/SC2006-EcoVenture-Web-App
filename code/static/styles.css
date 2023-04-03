@@ -386,6 +386,22 @@ margin: auto 10%;
     padding-bottom: 0;
 }
 
+/*-----------Check In Page-----------*/
+.ci-title-section{
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+
+.ci-title{
+    padding: 0;
+}
+
+.ci-description{
+    color: #40513B;
+    font-size: 3.5rem;
+    padding: 0;
+    margin: 0;
+}
 
 /*-----------Where Should I Go Page-----------*/
 .wsig-feature-header{

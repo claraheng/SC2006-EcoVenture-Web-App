@@ -37,6 +37,11 @@
             width: 100%;
         }
     </style>
+    <script>
+        {% if error %}
+            alert("{{ error }}");
+        {% endif %}
+    </script>
 </head>
 <body>
     <section class="colored-section ci-title-section">
@@ -71,8 +76,8 @@
         </div>
         <!--RHS section-->
         <div class="col-lg-6" style="text-align: center; padding: 3rem 2rem;">
-            <h3 class="ci-description">Checked in at [insert location]</h3>
-            <h4 class="ci-description" style="color: #609966">You now have [insert points] points!</h4>
+            <h3 class="ci-description">Checked in at {{closest_area}}</h3>
+            <h4 class="ci-description" style="color: #609966">You now have {{user.points}} points!</h4>
 
 
             <h3 class="ci-description" style="margin-top: 7%">Want more points?</h3>
@@ -87,26 +92,65 @@
 
     <script>
         function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12
+            // Initialize the map
+            var map = new google.maps.Map(document.getElementById("map"), {
+              zoom: 12,
             });
-
+          
+            // Fetch the list of areas from the API
+            fetch("/api/areas")
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(`HTTP error: ${response.status}`);
+                }
+                return response.json();
+              })
+              .then((data) => {
+                console.log(data);
+                data.forEach((location) => {
+                  const marker = new google.maps.Marker({
+                    position: { lat: location.latitude, lng: location.longitude },
+                    map,
+                    title: `${location.name} (Points: ${location.points})`,
+                    icon: {
+                      url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                    },
+                  });
+    
+                });
+              })
+              .catch((error) => {
+                console.error(`Error fetching areas: ${error}`);
+              });
+          
             // Get user's current location
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                    map.setCenter(userLatLng);
-
-                    // Add marker for user's location
-                    var marker = new google.maps.Marker({
-                        position: userLatLng,
-                        map: map,
-                        title: 'Your Location'
-                    });
-                });
+              navigator.geolocation.getCurrentPosition(
+                function (position) {
+                  var userLatLng = new google.maps.LatLng(
+                    position.coords.latitude,
+                    position.coords.longitude
+                  );
+                  map.setCenter(userLatLng);
+          
+                  // Add a marker for the user's location
+                  var marker = new google.maps.Marker({
+                    position: userLatLng,
+                    map: map,
+                    title: "Your Location",
+                  });
+                },
+                function (error) {
+                  console.error(`Error getting current position: ${error}`);
+                }
+              );
+            } else {
+              console.error("Geolocation is not supported by this browser.");
             }
-        }
-    </script>
+          }
+          
+        </script>
+        
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHFCLcZvBCRrkFPKDLtMUq_ijnTQ1aRXE&callback=initMap"></script>
 </body>
 </html>

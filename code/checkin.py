@@ -2,7 +2,7 @@ from models import db, app
 from fitnessareas import Area
 from user import User
 import requests,math
-from flask import session, Blueprint
+from flask import session, Blueprint,render_template
 from flask_login import login_required
 import json
 
@@ -15,7 +15,7 @@ checkin_bp = Blueprint('checkin', __name__)
 def showPoints():
     username = session.get('username')
     user = User.query.filter_by(username=username).first()
-    return f'{user.username} now has {user.points}'
+    return render_template("myPoints.html",user = user)
 
 
 
@@ -29,19 +29,19 @@ def check_in():
     
     # Get user's current location using a location services API
     location = get_user_location()  # This function should use a location services API to get the user's current location
-    print('location',location)
     
     # Find the fitness area closest to the user's current location
     closest_area = get_closest_fitness_area(location)
-    print('closest_area=',get_closest_fitness_area(location))
     
     # Check if the user is within the proximity of the closest fitness area
     if is_user_within_proximity(location, closest_area):
         user.points += closest_area.points
         db.session.commit()
-        return f'Checked in at {closest_area.name}, {user.username} now has {user.points} points.'
+        #return f'Checked in at {closest_area.name}, {user.username} now has {user.points} points.'
+        return render_template("checkin.html",user = user, closest_area = closest_area  )
     else:
-        return 'You are not within the proximity of any fitness area'
+        error = "You are not within the proximity of any fitness area"
+        return render_template("user.html", error = error )
         
 def get_user_location():
     # This function should use a location services API to get the user's current location
@@ -66,7 +66,6 @@ def get_closest_fitness_area(location):
 
     for area in areas:
         distance = calculate_distance(location, (area.latitude, area.longitude))
-        print("type=",type(distance))
         if distance < min_distance:
             min_distance = distance
             closest_area = area
@@ -75,7 +74,6 @@ def get_closest_fitness_area(location):
 def is_user_within_proximity(user_location, area):
     # Check if the user is within the proximity of the closest fitness area
     distance = calculate_distance(user_location, (area.latitude, area.longitude))
-    print("distance=",distance)
     if distance <= 10:
         return True
     else:

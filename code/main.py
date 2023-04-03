@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, url_for,flash, Flask, current_app
 from flask_login import login_required
-from user import createAccount
+from user import createAccount, check_email, check_username
 from auth import auth_bp, login_manager
 from fitnessareas import areas_bp
 from whereshouldigo import WhereShouldIGo_bp
@@ -8,13 +8,7 @@ from checkin import checkin_bp
 from password_strength import PasswordPolicy 
 import sqlite3
 from models import app
-#from flask_cors import CORS # frontend
 from flask import jsonify # frontend
-
-
-# frontend
-#app = Flask(__name__)
-#CORS(app)
 
 
 app.secret_key = 'your_secret_key'
@@ -53,12 +47,23 @@ def user():
         return redirect(url_for('auth.login'))
     return render_template('user.html', username=username)
 
+
 @app.route('/createAccount', methods=['GET', 'POST'])
 def createAccountView():
     if request.method == 'POST':
         username = request.form['username']
+        if not check_username(username):
+            error = " Please input username of length less than 50"
+            return render_template("createAccount.html",error=error)
         email = request.form['email']
+        if not check_email(email):
+            error = "Please enter a valid email"
+            return render_template("createAccount.html",error=error)
         password1 = request.form['password1']
+        
+        if len(password1) > 49:
+            error = "Please enter password with length less than 50"
+            return render_template("createAccount.html",error = error) 
         password2 = request.form['password2']
         points = 0
         

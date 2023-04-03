@@ -31,6 +31,11 @@
 
     <!--FontAwesome-->
     <script src="https://kit.fontawesome.com/7d3131a49e.js" crossorigin="anonymous"></script>
+    <script>
+      {% if error %}
+          alert("{{ error }}");
+      {% endif %}
+  </script>
  
     <title>Home</title>
   </head>

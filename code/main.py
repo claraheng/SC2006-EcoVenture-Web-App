@@ -74,9 +74,9 @@ def createAccountView():
         
         #check password strength , disabled for testing purposes 
         policy = PasswordPolicy.from_names(
-            length=0,  # Minimum length of 8 characters
-            uppercase=0,  # Requires at least 1 uppercase letter
-            numbers=0,  # Requires at least 1 number
+            length=8,  # Minimum length of 8 characters
+            uppercase=1,  # Requires at least 1 uppercase letter
+            numbers=1,  # Requires at least 1 number
             special=0,  # Requires at least 1 special character
         )
         

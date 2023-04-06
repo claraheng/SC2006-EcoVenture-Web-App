@@ -38,6 +38,7 @@ def home():
     return render_template("home.html")
 
 @app.route("/user") #userpage
+@login_required
 def user():
     # get the username from the session
     username = session.get('username')
@@ -104,6 +105,7 @@ def getDirections():
     return render_template('directions.html', travel=travel)
 
 @app.route('/addLocation') #clicking on map to create location
+@login_required
 def addLocation():
     #admin login required, idk how todo this lol
     return render_template('addLocation.html')
@@ -155,6 +157,7 @@ def handle_delete():
 
 
 @app.route('/logout')
+@login_required
 def logout():
     session.pop('logged_in', None)
     session.pop('user_id', None)

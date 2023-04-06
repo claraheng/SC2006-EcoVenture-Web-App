@@ -22,7 +22,7 @@ def close_db(error):
 
 #@WhereShouldIGo_bp.route("/whereshouldigo")
 @app.route('/whereshouldigo')
-#@login_required
+@login_required
 def whereshouldigo():
     items = [
         {'category': 'Nature Reserves', 'image': 'image1', 'description': 'Protected areas of importance for flora, fauna, or features of geological or other special interest.'},
@@ -32,6 +32,7 @@ def whereshouldigo():
     return render_template("whereshouldigo.html", items=items)
 
 @app.route('/results')
+@login_required
 def results():
     query = request.args.get('query')
     conn = sqlite3.connect(current_app.config['AREASDBPATH'])
@@ -62,7 +63,7 @@ def results():
 
 #@WhereShouldIGo_bp.route('/route1', methods=['POST'])
 @app.route('/route1', methods=['POST'])
-#@login_required
+@login_required
 def route1():
     if request.method == 'POST':
         item_id = request.form['item_id']
@@ -78,6 +79,7 @@ def route1():
 
 #@WhereShouldIGo_bp.route('/areas/category/<category>', methods=['GET'])
 @app.route('/areas/category/<category>', methods=['GET'])
+@login_required
 def get_areas_by_category(category):
     db = get_db()
 

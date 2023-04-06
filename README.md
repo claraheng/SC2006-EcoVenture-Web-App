@@ -41,7 +41,7 @@
   <p align="center">
     This is a project by Team  5 of A34 for the SC2006 Software Engineering Course. 
     
-    For this project, we created Ecoventure, a fitness planning application which users can use to help them decide on the location for their fitness   activities. The application will take into account the user's distance from the location and the weather conditions. Additionally, users can             accumulate points for checking-in to fitness areas that give points. 
+    For this project, we created Ecoventure, a fitness planning application which users can use to help them decide on the location for their fitness \n activities. The application will take into account the user's distance from the location and the weather conditions. Additionally, users can \n          accumulate points for checking-in to fitness areas that give points. 
    <!--
     <br />
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>

@@ -73,6 +73,7 @@
           <h2 class="card-title fa-card-title">{{ area.name }}</h2>
           <p class="fa-card-description">{{ area.description }}</p>
           <div class="mt-auto fa-card-details">
+            <p class="fa-card-prop-title">Points: <p class="fa-card-details-data">{{ area.points }}</p></p>
              <p class="fa-card-prop-title">Weather Condition: <p class="fa-card-details-data">{{ area.weather }}</p></p>
           <p class="fa-card-prop-title">Distance from you: <p class="fa-card-details-data">{{ '%.2f' % area.distance_km }} km</p></p>
           <a class="fa-card-btn-link" href="/map/{{ area.id }}"><button class="btn-big fa-card-btn">View Route</button></a>

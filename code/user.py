@@ -60,11 +60,15 @@ def check_username(username):
     return True 
 
 def check_email(email): 
-    if len(email) < 7 or len(email)>50:
+    if len(email) < 7 or len(email) > 50:
         return False 
-    if "@" and (".com" or ".sg") not in email: 
+    if "@" not in email:
+        return False
+    domain = email.split("@")[1]
+    if "." not in domain or (domain.split(".")[1] not in ["com", "sg"]):
         return False 
-    return True 
+    return True
+
 
  
     

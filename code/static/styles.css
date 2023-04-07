@@ -250,6 +250,11 @@ margin: auto 10%;
     margin: 4px;
 }
 
+.input-descriptions{
+    color: grey;
+    margin: 4px;
+}
+
 .input-field{
     border-width: 3px;
     border-color: #609966;
@@ -399,7 +404,7 @@ margin: auto 10%;
 .ci-description{
     color: #40513B;
     font-size: 3.5rem;
-    padding: 0;
+    padding: 0 1.5rem;
     margin: 0;
 }
 
@@ -515,12 +520,24 @@ margin: auto 10%;
     text-align: center;
 }
 
+.fa-card-header{
+    font-family: 'Rubik', cursive;
+    color:#609966;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 0.5rem auto;
+    font-weight: 400;
+    background-color: #EDF1D6;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+}
+
 .fa-card-title{
     font-family: 'Rubik', cursive;
     color:#EDF1D6;
     text-align: center;
     font-size: 2.5rem;
-    margin: 0.5rem auto;
+    margin: 0.5rem auto 1rem;
     font-weight: 400;
 }
 
@@ -529,7 +546,7 @@ margin: auto 10%;
     color:#fff;
     text-align: center;
     font-size: 1.5rem;
-    margin: 0.5rem 1rem;
+    margin: 0.5rem auto;
     font-weight: 300;
 }
 

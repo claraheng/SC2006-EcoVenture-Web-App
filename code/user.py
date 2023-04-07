@@ -54,15 +54,15 @@ def createAccount(username, email, password, points):
     db.session.commit()
     
 def check_username(username):
-    if len(username) > 49:
+    if len(username) > 50:
         print(len(username))
         return False 
     return True 
 
 def check_email(email): 
-    if len(email) < 7 or len(email)>49:
+    if len(email) < 7 or len(email)>50:
         return False 
-    if "@" and ".com" not in email: 
+    if "@" and (".com" or ".sg") not in email: 
         return False 
     return True 
 

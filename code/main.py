@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, session, url_for,flash, Flask, current_app
+from flask import render_template, request, redirect, session, url_for,flash, jsonify, current_app
 from flask_login import login_required
 from user import createAccount, check_email, check_username
 from auth import auth_bp, login_manager
@@ -8,7 +8,6 @@ from checkin import checkin_bp
 from password_strength import PasswordPolicy 
 import sqlite3
 from models import app
-from flask import jsonify # frontend
 
 
 app.secret_key = 'your_secret_key'

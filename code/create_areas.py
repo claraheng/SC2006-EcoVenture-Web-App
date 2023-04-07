@@ -1,5 +1,5 @@
 #create areas for fitnessarea 
-from flask import Flask, g, request, jsonify, current_app
+from flask import g, request, jsonify, current_app
 import sqlite3
 from weather import *
 from models import app

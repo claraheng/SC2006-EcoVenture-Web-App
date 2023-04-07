@@ -134,11 +134,11 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 Windows:
 ```sh
-     venv\Scripts\activate.bat
+venv\Scripts\activate.bat
 ```
 Mac/Linux:
 ```sh
-     source venv/bin/activate
+source venv/bin/activate
 ```
    
 ###Installing dependencies 
@@ -152,15 +152,15 @@ python install_dependencies.py
 1. Run the following code in the terminal 
 
 Windows:
-  ```sh
-    set FLASK_APP=main.py
-    flask run
-  ```
+```sh
+set FLASK_APP=main.py
+flask run
+```
 Mac/Linux:
-    ```sh 
-    export FLASK_APP=main
-    flask run
-    ```
+ ```sh 
+ export FLASK_APP=main
+ flask run
+ ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

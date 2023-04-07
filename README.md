@@ -38,7 +38,7 @@
 
 <h3 align="center">Ecoventure</h3>
 
-  <p align="center">
+  <p align="left">
     This is a project by Team  5 of A34 for the SC2006 Software Engineering Course. 
     
     For this project, we created Ecoventure, a fitness planning application which 

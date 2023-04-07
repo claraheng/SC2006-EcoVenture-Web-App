@@ -66,6 +66,7 @@
 
 
 <!-- TABLE OF CONTENTS -->
+<!--
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -90,10 +91,11 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
-
+-->
 
 
 <!-- ABOUT THE PROJECT -->
+<!--
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
@@ -117,43 +119,56 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+-->
 
 <!-- GETTING STARTED -->
 ## Getting Started
+1. This project should be ideally ran with Visual Studio Code 
+2. Ensure that the Python extension is installed
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+### Setting up an environment
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+1. Make sure the terminal is in the directory with the venv file 
+2. Run the following code in the terminal 
+
+  Windows:
+     ```sh
+     venv\Scripts\activate.bat
+     ```
+
+  Mac/Linux:
+     ```sh
+     source venv/bin/activate
+     ```
+   
+###Installing dependencies 
+1. run the following code in the terminal
+
+```sh
+python install_dependencies.py
+```
+
+###Running the code 
+1. Run the following code in the terminal 
+
+  Windows:
   ```sh
-  npm install npm@latest -g
+    set FLASK_APP=main.py
+    flask run
   ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+  Mac/Linux:
+    ```sh 
+    export FLASK_APP=main
+    flask run
+    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+<!--
 
 <!-- USAGE EXAMPLES -->
+<!--
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
@@ -161,10 +176,11 @@ Use this space to show useful examples of how a project can be used. Additional 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+-->
 
 
 <!-- ROADMAP -->
+<!--
 ## Roadmap
 
 - [ ] Feature 1
@@ -179,6 +195,7 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 
 
 <!-- CONTRIBUTING -->
+<!--
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -197,6 +214,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 <!-- LICENSE -->
+<!--
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
@@ -206,6 +224,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 <!-- CONTACT -->
+<!--
 ## Contact
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
@@ -217,6 +236,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 
 <!-- ACKNOWLEDGMENTS -->
+<!--
 ## Acknowledgments
 
 * []()
@@ -229,6 +249,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+<!--
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
 [contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
@@ -258,3 +279,4 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+

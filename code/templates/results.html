@@ -75,24 +75,26 @@
 <h2 class="results-page-description">Showing results for "{{query}}"</h2>
 
 <!--Results-->
-<div class="row fa-card-section">
+{% if results|length == 0 %}
+  <h2 class="no-results-message">No results found for "{{ query }}"</h2>
+{% else %}
+  <div class="row fa-card-section">
 
-  {% for result in results %}
-  <div class=" d-flex align-items-stretch col-lg-4 fa-card-column">
-    <div class="d-flex align-items-end flex-column card fa-card ">
-      <h2 class="card-title fa-card-title">{{ result[1] }}</h2>
-      <p class="fa-card-description">{{ result[6] }}</p>
-      <div class="mt-auto fa-card-details">
-         <p class="fa-card-prop-title">Weather Condition: <p class="fa-card-details-data">{{ result[8] }}</p></p>
-      <p class="fa-card-prop-title">Distance from you: <p class="fa-card-details-data">{{ '%.2f' % result[7] }} km</p></p>
-      <a href="/map/{{ result[0] }}"><button class="btn-big fa-card-btn">View Route</button></a>
+    {% for result in results %}
+    <div class=" d-flex align-items-stretch col-lg-4 fa-card-column">
+      <div class="d-flex align-items-end flex-column card fa-card ">
+        <h2 class="card-title fa-card-title">{{ result[1] }}</h2>
+        <p class="fa-card-description">{{ result[6] }}</p>
+        <div class="mt-auto fa-card-details">
+          <p class="fa-card-prop-title">Weather Condition: <p class="fa-card-details-data">{{ result[8] }}</p></p>
+        <p class="fa-card-prop-title">Distance from you: <p class="fa-card-details-data">{{ '%.2f' % result[7] }} km</p></p>
+        <a href="/map/{{ result[0] }}"><button class="btn-big fa-card-btn">View Route</button></a>
+        </div>
       </div>
-     
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
-
-</div>
+{% endif %}
 
 <!--Footer-->
 <footer class="light-section footer-section">

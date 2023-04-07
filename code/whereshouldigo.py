@@ -41,6 +41,11 @@ def results():
     results = c.fetchall()
     conn.close()
 
+    # Check if there are any results
+    if not results:
+        message = f"No matching results found for '{query}'."
+        return render_template('results.html', query=query, message=message)
+
      # Get user's current location
     location = get_user_location()
     

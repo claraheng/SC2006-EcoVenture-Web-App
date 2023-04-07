@@ -40,7 +40,7 @@
   <body>
     
     <nav class="colored-section navbar navbar-expand-lg navbar-dark">
-      <a class="navbar-brand" href="/#">EcoVenture</a>
+      <a class="navbar-brand">EcoVenture</a>
 
       <ul class="navbar-nav ms-auto"> 
 
@@ -79,10 +79,12 @@
 
   {% for result in results %}
   <div class=" d-flex align-items-stretch col-lg-4 fa-card-column">
-    <div class="d-flex align-items-end flex-column card fa-card ">
+    <div class="d-flex align-items-end flex-column card fa-card" style="text-align: center;">
+      <p class="fa-card-header">{{ result[5] }}</p>
       <h2 class="card-title fa-card-title">{{ result[1] }}</h2>
       <p class="fa-card-description">{{ result[6] }}</p>
       <div class="mt-auto fa-card-details">
+        <p class="fa-card-prop-title">Points: <p class="fa-card-details-data">{{ result[4] }}</p></p>
          <p class="fa-card-prop-title">Weather Condition: <p class="fa-card-details-data">{{ result[8] }}</p></p>
       <p class="fa-card-prop-title">Distance from you: <p class="fa-card-details-data">{{ '%.2f' % result[7] }} km</p></p>
       <a href="/map/{{ result[0] }}"><button class="btn-big fa-card-btn">View Route</button></a>

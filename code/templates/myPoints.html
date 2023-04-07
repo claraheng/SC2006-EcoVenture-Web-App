@@ -34,7 +34,7 @@
     <section class="colored-section ci-title-section">
     <!--Navigation Bar-->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="/#">EcoVenture</a>
+        <a class="navbar-brand">EcoVenture</a>
         <ul class="navbar-nav ms-auto"> 
         <li class="nav-item active">
             <a class="nav-link" href="/user">Home</a>
@@ -57,17 +57,20 @@
 </section>
 
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-6" style="text-align: left;">
             <img src="../static/images/my-points-img.jpeg">
         </div>
         <!--RHS section-->
-        <div class="col-lg-9" style="text-align: center; padding: 3rem 2rem;">
+        <div class="col-lg-6" style="text-align: center; padding: 3rem 2rem;">
+          <div style="margin-right:20%;">
             <h3 class="ci-description">Keep it going, {{user.username}}!</h3>
             <h4 class="ci-description" style="color: #609966">You now have {{user.points}} points.</h4>
 
 
             <h3 class="ci-description" style="margin-top: 7%">Want more points?</h3>
             <a href="/whereshouldigo"><button class="btn-big">Find more Fitness Areas</button></a>
+          </div>
+            
         </div>
     </div>
  

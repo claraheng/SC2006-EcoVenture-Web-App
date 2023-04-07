@@ -72,14 +72,14 @@
   </div>
 </section>
 
-<h2 class="results-page-description">Showing results for "{{query}}"</h2>
+
 
 <!--Results-->
 {% if results|length == 0 %}
-  <h2 class="no-results-message">No results found for "{{ query }}"</h2>
+  <h2 class="results-page-description">No results found for "{{query}}"</h2>
 {% else %}
   <div class="row fa-card-section">
-
+  <h2 class="results-page-description">Showing results for "{{query}}"</h2>
     {% for result in results %}
     <div class=" d-flex align-items-stretch col-lg-4 fa-card-column">
       <div class="d-flex align-items-end flex-column card fa-card" style="text-align: center;">

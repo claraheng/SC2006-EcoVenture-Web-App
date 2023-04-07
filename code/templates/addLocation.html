@@ -119,6 +119,11 @@
                   const pointsInput = document.getElementById("points-input");
                   const newPoints = parseInt(pointsInput.value, 10);
 
+                  if (newPoints <= 0) {
+                    alert("Error: Points value must be greater than 0");
+                    return;
+                  }
+
                   // Update the location.points value and update the InfoWindow content
                   location.points = newPoints;
                   const name = location.name
@@ -213,8 +218,12 @@
           infowindow.setContent(contentString + form);
       
           $(document).on("click", "#submitButton", function () {
-            var name = $("#nameInput").val();
             var points = $("#pointsInput").val();
+            if (points <= 0) {
+              alert("Error: Points value must be greater than 0");
+              return;
+            }
+            var name = $("#nameInput").val();
             var cat = $('#categoryInput').val();
             var desc = $("#descriptionInput").val();
             $.ajax({

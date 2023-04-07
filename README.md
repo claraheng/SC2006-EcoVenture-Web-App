@@ -141,14 +141,14 @@ Mac/Linux:
 source venv/bin/activate
 ```
    
-###Installing dependencies 
+### Installing dependencies 
 1. run the following code in the terminal
 
 ```sh
 python install_dependencies.py
 ```
 
-###Running the code 
+### Running the code 
 1. Run the following code in the terminal 
 
 Windows:

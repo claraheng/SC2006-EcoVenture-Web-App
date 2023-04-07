@@ -62,7 +62,7 @@ def check_username(username):
 def check_email(email): 
     if len(email) < 7 or len(email)>50:
         return False 
-    if "@" and (".com" or ".sg") not in email: 
+    if ("@" and ".com") or ("@" and ".sg") not in email: 
         return False 
     return True 
 

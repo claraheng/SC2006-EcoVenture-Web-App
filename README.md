@@ -133,13 +133,13 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 2. Run the following code in the terminal 
 
 Windows:
-     ```sh
+```sh
      venv\Scripts\activate.bat
-     ```
+```
 Mac/Linux:
-     ```sh
+```sh
      source venv/bin/activate
-     ```
+```
    
 ###Installing dependencies 
 1. run the following code in the terminal

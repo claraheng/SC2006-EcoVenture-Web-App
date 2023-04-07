@@ -132,12 +132,11 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 1. Make sure the terminal is in the directory with the venv file 
 2. Run the following code in the terminal 
 
-  Windows:
+Windows:
      ```sh
      venv\Scripts\activate.bat
      ```
-
-  Mac/Linux:
+Mac/Linux:
      ```sh
      source venv/bin/activate
      ```
@@ -152,12 +151,12 @@ python install_dependencies.py
 ###Running the code 
 1. Run the following code in the terminal 
 
-  Windows:
+Windows:
   ```sh
     set FLASK_APP=main.py
     flask run
   ```
-  Mac/Linux:
+Mac/Linux:
     ```sh 
     export FLASK_APP=main
     flask run

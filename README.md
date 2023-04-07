@@ -149,6 +149,10 @@ python install_dependencies.py
 ```
 
 ### Running the code 
+1. Change directory into code 
+```sh 
+cd code
+```
 1. Run the following code in the terminal 
 
 Windows:

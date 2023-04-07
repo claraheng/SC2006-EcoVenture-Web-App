@@ -1,0 +1,10 @@
+flask
+flask_login
+sqlite3
+password_strength
+requests
+math
+json
+weather
+flask_sqlalchemy
+werkzeug.security

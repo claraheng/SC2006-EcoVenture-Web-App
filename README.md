@@ -165,7 +165,8 @@ cd code
 
 Windows:
 ```sh
-set FLASK_APP=main.py
+set FLASK_APP=main
+$env:FLASK_APP = "main.py"
 flask run
 ```
 Mac/Linux:

@@ -126,7 +126,8 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 ## Getting Started
 1. This project should be ideally ran with Visual Studio Code 
 2. Ensure that the Python extension is installed
-3. Ensure that python is in the Environment path
+3. Ensure that Python is in the Environment path
+4. Make sure that Python is the intepreter 
 
 
 ### Setting up an environment
@@ -144,7 +145,7 @@ source venv/bin/activate
 ```
    
 ### Installing dependencies 
-1. run the following code in the terminal
+1. Run the following code in the terminal
 
 Mac:
 ```sh

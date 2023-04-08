@@ -146,6 +146,7 @@ source venv/bin/activate
 ### Installing dependencies 
 1. run the following code in the terminal
 
+Mac:
 ```sh
 python install_dependencies.py
 ```

@@ -126,6 +126,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 ## Getting Started
 1. This project should be ideally ran with Visual Studio Code 
 2. Ensure that the Python extension is installed
+3. Ensure that python is in the Environment path
 
 
 ### Setting up an environment

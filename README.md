@@ -150,6 +150,11 @@ source venv/bin/activate
 python install_dependencies.py
 ```
 
+Windows:
+```sh
+pip install -r requirements.txt
+```
+
 ### Running the code 
 1. Change directory into code 
 ```sh 

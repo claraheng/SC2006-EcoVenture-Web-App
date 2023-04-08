@@ -224,6 +224,11 @@
               return;
             }
             var name = $("#nameInput").val();
+            name=name.trim()
+            if (name =="") {
+              alert("Error: Fitness area name must not be blank");
+              return;
+            }
             var cat = $('#categoryInput').val();
             var desc = $("#descriptionInput").val();
             $.ajax({

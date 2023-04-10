@@ -51,7 +51,7 @@ def getTemperature():
     return temperature
 
 #rainfall, not used
-def getRainfaill(region):
+def getRainfall(region):
      url = "https://api.data.gov.sg/v1/environment/rainfall"
      response = requests.get(url)
 
@@ -81,37 +81,41 @@ def getForecast(region):
 
     location=''
     weather='Error'
-
     if region=='Error' or region=='Not in Singapore':
         print("Invalid region")
         return weather
     if response.status_code == 200:
+        print(response.status_code)
         data = response.json()
-        #print(data['items'])  
-        if region=='North':
-            location='Mandai'
-        elif region=='UluWest':
-            location='Tengah'
-        elif region=='West':
-            location='Jurong West'
-        elif region=='Central':
-            location='Bishan'
-        elif region=='South':
-            location='Tanglin'
-        elif region=='East':
-            location='Tampines'
-        elif region=='Sentosa':
-            location='Sentosa'
-        #print(data['items'][0]['forecasts'])
-        for fItem in data['items'][0]['forecasts']:
-            if fItem['area']==location:
-                weather=fItem['forecast']
-                break
-        if weather=='Error':
-            print("Weather not found despite valid location, something went wrong with the API")
+        if 'forecasts' in data['items'][0]:
+            if region=='North':
+                location='Mandai'
+            elif region=='UluWest':
+                location='Tengah'
+            elif region=='West':
+                location='Jurong West'
+            elif region=='Central':
+                location='Bishan'
+            elif region=='South':
+                location='Tanglin'
+            elif region=='East':
+                location='Tampines'
+            elif region=='Sentosa':
+                location='Sentosa'
+            #print(data['items'][0]['forecasts'])
+            for fItem in data['items'][0]['forecasts']:
+                if fItem['area']==location:
+                    weather=fItem['forecast']
+                    break
+            if weather=='Error':
+                print("Weather not found despite valid location, something went wrong with the API")
+        else:
+           # 'forecasts' key does not exist in the response dictionary
+            print("No forecasts found in response")
+            return "Error with API"
     else:
         print("Error retrieving data")
     return weather
 
-#print(getForecast(getRegion(1.362582, 103.571071)))
+#print(getForecast(getRegion(1.362582, 103.671071)))
 #print(getTemperature())

@@ -74,7 +74,7 @@ def get_closest_fitness_area(location):
 def is_user_within_proximity(user_location, area):
     # Check if the user is within the proximity of the closest fitness area
     distance = calculate_distance(user_location, (area.latitude, area.longitude))
-    if distance <= 10:
+    if distance <= 0.1:
         return True
     else:
         return False
